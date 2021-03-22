@@ -1,0 +1,14 @@
+.input {
+    border-radius: 30px;
+    background-color: #E9DBDB;
+    box-shadow: inset  4px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    padding: 1rem;
+}
+.input > ::placeholder {
+    color: #ADABAB;
+}
+
+.input:focus {
+    outline: none;
+}
