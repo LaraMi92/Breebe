@@ -9,6 +9,8 @@ import authMw from '../util/auth';
 import Title from '../Title/Title';
 import Input from '../Input/Input';
 import User from '../User/User';
+import breebepen from '../assets/breebepen.svg';
+import breebescribble from '../assets/breebescribble.svg';
 
 const Home = () => {
    const [AccountPage, setAccountPage] = useState(true);
@@ -78,8 +80,8 @@ const Home = () => {
   <div>
       <Title />
         <User pseudo={pseudo} />
-      <button type="button" onClick={logOut}>Me déconnecter</button>
-      <button type="button" onClick={getBreebes}>Mes breebes</button>
+      <button type="button"className="log-out" onClick={logOut}>Me déconnecter</button>
+      <button type="button"className="get-breebes" onClick={getBreebes}>Mes breebes</button>
     
     <form>
       <Input
@@ -90,9 +92,20 @@ const Home = () => {
       />
         <button type="submit" onClick={handleSubmitNew} className="submit-breebe">''</button>
     </form>
+    <div className="breebes">
       {breebes.length !== 0 && breebes.map((breebe) => (
-          <div className="single-breebe">{breebe}</div>
+          <div className="single-breebe">{breebe.body}
+          <img src={breebepen} 
+          className="single-breebe--edit"
+          alt="edit breebe"
+          />
+          <img src={breebescribble} 
+          className="single-breebe--delete"
+          alt="delete breebe"
+          />
+        </div>
       ))}
+      </div>
   </div>
   );
 }
