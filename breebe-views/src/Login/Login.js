@@ -50,12 +50,14 @@ const Login = () => {
         type="email"
         placeholder="Email"
         onChange={handleEmail}
+        value={email}
         />
 
         <Input
         type="password"
         placeholder="Mot de passe"
         onChange={handlePassword}
+        value={password}
         />
     <button type="submit"className="submit" onClick={handleSubmit}>Se connecter</button>
     <div className="link"><a href="/signup">Je n'ai pas de compte Breebe</a></div>

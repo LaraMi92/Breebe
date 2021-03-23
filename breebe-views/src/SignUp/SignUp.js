@@ -56,16 +56,19 @@ const SignUp = () => {
         type="email"
         onChange={handleEmail}
         placeholder="Email"
+        value={email}
         />
         <Input
         type="text"
         onChange={handlePseudo}
         placeholder="Pseudo"
+        value={pseudo}
         />
         <Input
         type="password"
         onChange={handlePassword}
         placeholder="Mot de passe"
+        value={password}
         />
     <button type="submit"onClick={handleSubmit} className="submit">S'enregistrer</button>
     <div className="link"><a href="/login">J'ai un compte Breebe</a></div>

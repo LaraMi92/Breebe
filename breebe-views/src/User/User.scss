@@ -1,0 +1,12 @@
+@import 'src/styles/vars';
+@import url('https://fonts.googleapis.com/css2?family=Ramaraja&display=swap');
+
+.user {
+    font-family: 'Ramaraja', serif;
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    background-color: rgba(164, 205, 189, 0.5);
+    border-radius: 30px;
+    padding: $basic-gutter;
+}
