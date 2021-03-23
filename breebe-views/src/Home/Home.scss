@@ -39,6 +39,7 @@
 }
 
 .single-breebe {
+    width: 40%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,22 +49,32 @@
     background-color: $default-color;
     padding: $basic-gutter;
     margin: $basic-gutter;
+    &--form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: content-box;
+    }
     &--input {
-        display: inline-block;
+        display: block;
         border: none;
         border-radius: 30px;
         margin-right: .5rem;
     }
     &--tag-edit {
-        display: inline-block;
+        display: block;
         border: none;
         border-radius: 30px;
+        
     }
     &--edit{
         display: inline-block;
         width: 10%;
     }
     &--delete{
+        width: 10%;
+    }
+    &--back {
         width: 10%;
     }
 }
