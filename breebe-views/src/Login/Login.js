@@ -57,7 +57,8 @@ const Login = () => {
         placeholder="Mot de passe"
         onChange={handlePassword}
         />
-    <button type="submit"onClick={handleSubmit}>Se connecter</button>
+    <button type="submit"className="submit" onClick={handleSubmit}>Se connecter</button>
+    <div className="link"><a href="/signup">Je n'ai pas de compte Breebe</a></div>
     </form>
     </div>
   );

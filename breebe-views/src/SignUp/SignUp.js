@@ -5,6 +5,8 @@ import axios from 'axios';
 
 //== Local imports
 import './SignUp.scss';
+import Input from '../Input/Input';
+import Title from '../Title/Title';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
@@ -47,25 +49,28 @@ const SignUp = () => {
                })
      }
   return (
+    <div>
+        <Title />
     <form onSubmit={handleSubmit}>
-        <input
+        <Input
         type="email"
         onChange={handleEmail}
         placeholder="Email"
         />
-        <input 
+        <Input
         type="text"
         onChange={handlePseudo}
         placeholder="Pseudo"
         />
-        <input
+        <Input
         type="password"
         onChange={handlePassword}
         placeholder="Mot de passe"
         />
-    <button type="submit"onClick={handleSubmit}>S'enregistrer</button>
-    <a href="/login">Déjà un compte ?</a>
+    <button type="submit"onClick={handleSubmit} className="submit">S'enregistrer</button>
+    <div className="link"><a href="/login">J'ai un compte Breebe</a></div>
     </form>
+    </div>
   );
 }
 
