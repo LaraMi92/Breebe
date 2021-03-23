@@ -39,12 +39,28 @@
 }
 
 .single-breebe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: content-box;
     font-family: 'Ramaraja', serif;
     border-radius: 30px;
     background-color: $default-color;
     padding: $basic-gutter;
     margin: $basic-gutter;
+    &--input {
+        display: inline-block;
+        border: none;
+        border-radius: 30px;
+        margin-right: .5rem;
+    }
+    &--tag-edit {
+        display: inline-block;
+        border: none;
+        border-radius: 30px;
+    }
     &--edit{
+        display: inline-block;
         width: 10%;
     }
     &--delete{

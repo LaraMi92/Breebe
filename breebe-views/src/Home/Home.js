@@ -53,6 +53,8 @@ const Home = () => {
    const [breebeId, setBreebeId] = useState('');
    const [bodyBreebe, setBody] = useState('');
    const [tagBreebe, setTag] = useState('');
+   const [editMode, setEditMode] = useState(false);
+   const [editedBreebe, setEditedBreebe] = useState('');
 
    const setNewBreebe = (event) => {
        setBody(event.target.value);
@@ -76,6 +78,24 @@ const Home = () => {
             .then(()=> window.location.reload())
             .catch((error) => setErrors(error))
    }
+
+   const handleEdit = (event) => {
+        setEditedBreebe(event.target.value);
+   }
+
+   const refuseEdit = () => (
+       <div>Ne me laissez pas vide</div>
+   )
+
+   const handleTag = (event) => {
+       setTag(event.target.value);
+   }
+   const submitEdit = (event) => {
+        authMw(history);
+        event.preventDefault();
+
+       
+   }
   return (
   <div>
       <Title />
@@ -93,17 +113,52 @@ const Home = () => {
         <button type="submit" onClick={handleSubmitNew} className="submit-breebe">''</button>
     </form>
     <div className="breebes">
-      {breebes.length !== 0 && breebes.map((breebe) => (
-          <div className="single-breebe">{breebe.body}
-          <img src={breebepen} 
-          className="single-breebe--edit"
-          alt="edit breebe"
-          />
-          <img src={breebescribble} 
-          className="single-breebe--delete"
-          alt="delete breebe"
-          />
-        </div>
+      {breebes.length !== 0 && breebes.map((breebe, index) => (
+                <div key={index} className="single-breebe">
+                {editMode === false ? (
+                    <div>
+                     <div className="single-breebe--text">{breebe.body}</div>
+
+                     <img src={breebepen} 
+                     className="single-breebe--edit"
+                     alt="edit breebe"
+                     onClick={() => setEditMode(true)}
+                     />
+                     <img src={breebescribble} 
+                     className="single-breebe--delete"
+                     alt="delete breebe"
+                     />
+                    </div>
+                ) : (
+                    <div>
+                    <form>
+                    <input
+                    className="single-breebe--input"
+                    placeholder={breebe.body}
+                    value={editedBreebe}
+                    onChange={handleEdit}
+                    />
+                    <input
+                     className="single-breebe--tag-edit"
+                     placeholder="thème"
+                     value={tagBreebe}
+                     onChange={handleTag}
+                     />
+                    <img src={breebepen} 
+                    className="single-breebe--edit"
+                    alt="edit breebe"
+                    onClick={ editedBreebe === '' ? refuseEdit : submitEdit}
+                    />
+                    </form>
+                    <button type="button" onClick={() => setEditMode(false)}>retour</button>
+                   </div>
+                  
+                )
+            }
+                </div>
+             
+        
+        
       ))}
       </div>
   </div>
