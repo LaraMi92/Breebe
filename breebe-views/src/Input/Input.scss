@@ -12,10 +12,12 @@
     margin: 1rem;
     text-align: center;
 }
-.input > ::placeholder {
+.input::placeholder {
     color: #ADABAB;
+    text-align: center;
 }
 
 .input:focus {
     outline: none;
+    text-align: left;
 }

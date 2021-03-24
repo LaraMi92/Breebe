@@ -1,5 +1,5 @@
 //== NPM imports
-import {useState, useEffect} from 'react';
+import {useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -21,6 +21,12 @@ const Home = () => {
    const [breebes, setBreebes] = useState([]);
    const [pseudo, setPseudo] = useState('');
    const [errors, setErrors] = useState([]);
+   const [breebeId, setBreebeId] = useState('');
+   const [bodyBreebe, setBody] = useState('');
+   const [tagBreebe, setTag] = useState('');
+   const [editMode, setEditMode] = useState(false);
+   const [editedBreebe, setEditedBreebe] = useState('');
+   const [breebesTagFiltered, setBreebesTagFiltered] = useState([]);
 
    const history = useHistory();
 
@@ -53,12 +59,6 @@ const Home = () => {
         setErrors(error);
     })
    }
-   
-   const [breebeId, setBreebeId] = useState('');
-   const [bodyBreebe, setBody] = useState('');
-   const [tagBreebe, setTag] = useState('');
-   const [editMode, setEditMode] = useState(false);
-   const [editedBreebe, setEditedBreebe] = useState('');
 
    const setNewBreebe = (event) => {
        setBody(event.target.value);
@@ -154,7 +154,7 @@ const Home = () => {
     <div className="breebes">
       {breebes.length !== 0 && breebes.map((breebe, index) => (
                 <div key={index} className="single-breebe">
-                {editMode === false ? (
+                
                     <div>
                      <div className="single-breebe--text">{breebe.body}</div>
 
@@ -172,12 +172,13 @@ const Home = () => {
                      onClick={() => deleteBreebe(breebe)}
                      />
                     </div>
-                ) : (
+                </div>
+      ))}
+      {editMode && (
                     <div>
-                    <form className="single-breebe--form">
+                    <form className="single-breebe">
                     <input
                     className="single-breebe--input"
-                    placeholder={breebe.body}
                     value={editedBreebe}
                     onChange={handleEdit}
                     />
@@ -200,14 +201,8 @@ const Home = () => {
                     </form>
                   
                    </div>
-                  
                 )
             }
-                </div>
-             
-        
-        
-      ))}
       </div>
   </div>
   );
