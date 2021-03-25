@@ -1,7 +1,8 @@
 //== NPM imports
-import {useState, useEffect } from 'react';
+import {useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import WordCloud from 'react-wordcloud';
 
 //== Local Components imports
 import './Home.scss';
@@ -10,6 +11,7 @@ import Title from '../Title/Title';
 import Input from '../Input/Input';
 import User from '../User/User';
 import Tags from '../Tags/Tags';
+import quotes from '../assets/quotes';
 
 // == SVGS
 import breebepen from '../assets/breebepen.svg';
@@ -27,6 +29,7 @@ const Home = () => {
    const [editMode, setEditMode] = useState(false);
    const [editedBreebe, setEditedBreebe] = useState('');
    const [breebesTagFiltered, setBreebesTagFiltered] = useState([]);
+   const [cloud, showCloud] = useState();
 
    const history = useHistory();
 
@@ -133,13 +136,30 @@ const Home = () => {
                 setErrors(error)
             })
    }
+
+   const wordFreq = (string) => {
+    
+    var words = string.toString().replace(/[.]/g, '').split(/\s/);
+    var freqMap = {};
+    words.forEach(function(w) {
+        if (!freqMap[w]) {
+            freqMap[w] = 0;
+        }
+        freqMap[w] += 1;
+    });
+    console.log(freqMap);
+    return freqMap;
+}
+
+
   return (
   <div>
       <Title />
         <User pseudo={pseudo} />
       <button type="button"className="log-out" onClick={logOut}>Me déconnecter</button>
       <button type="button"className="get-breebes" onClick={getBreebes}>Mes breebes</button>
-    
+  <button type="button" className="get-word-cloud" onClick={() => (<div className="breebe-cloud" style={{height: 400, width: 600}}><WordCloud words={quotes} /></div>)}>Mon BreebeCumulus</button>
+        
     <form>
       <Input
       type="text"
