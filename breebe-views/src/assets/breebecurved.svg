@@ -1,0 +1,10 @@
+ <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 400 400"  className="svg-text">
+  <defs>
+   
+    <path d="M0, 200a200, 200 0 1, 0 400, 0a200, 200 0 1, 0 -400, 0" id="txt-path"></path>
+  </defs>
+
+  <text fill="#E2A9BD" fontSize="60" fontFamily="Ramaraja" fontWeight="60">
+    <textPath startOffset="0" xlinkHref="#txt-path">Breebe Breebe Breebe Breebe</textPath>
+  </text>
+</svg>
