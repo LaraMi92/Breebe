@@ -29,7 +29,7 @@ const Home = () => {
    const [editMode, setEditMode] = useState(false);
    const [editedBreebe, setEditedBreebe] = useState('');
    const [breebesTagFiltered, setBreebesTagFiltered] = useState([]);
-   const [cloud, showCloud] = useState();
+   const [placeholderEdit, setPlaceholderEdit] = useState('');
 
    const history = useHistory();
 
@@ -143,8 +143,8 @@ const Home = () => {
   return (
   <div>
       <Title />
-        <User pseudo={pseudo} />
-      <button type="button"className="log-out" onClick={logOut}>Me déconnecter</button>
+        <User pseudo={pseudo} onClick={logOut} />
+     
       <button type="button"className="get-breebes" onClick={getBreebes}>Mes breebes</button>
 
       <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 425 200"  className="svg-text">
@@ -167,7 +167,7 @@ const Home = () => {
       />
         <button type="submit" onClick={handleSubmitNew} className="submit-breebe">''</button>
     </form>
-   {} 
+    {breebes.length !== 0 && <Tags breebes={breebes} filterTags={filterTags}/>} 
 
     <div className="breebes">
       {breebes.length !== 0 && breebes.map((breebe, index) => (
@@ -175,13 +175,14 @@ const Home = () => {
                 
                     <div>
                      <div className="single-breebe--text">{breebe.body}</div>
-
+                    <div className="single-breebe--icons">
                      <img src={breebepen} 
                      className="single-breebe--edit"
                      alt="edit breebe"
                      onClick={() => {
                          setEditMode(true);
                          setBreebeId(breebe.breebeId)
+                         setPlaceholderEdit(breebe.body)
                         }}
                      />
                      <img src={breebescribble} 
@@ -189,14 +190,16 @@ const Home = () => {
                      alt="delete breebe"
                      onClick={() => deleteBreebe(breebe)}
                      />
+                     </div>
                     </div>
                 </div>
       ))}
       {editMode && (
-                    <div>
-                    <form className="single-breebe">
+                    <div className="modal" >
+                    <form className="modal-main">
                     <input
                     className="single-breebe--input"
+                   placeholder={placeholderEdit}
                     value={editedBreebe}
                     onChange={handleEdit}
                     />
@@ -207,7 +210,7 @@ const Home = () => {
                      onChange={handleTag}
                      />
                     <img src={breebepen} 
-                    className="single-breebe--edit"
+                    className="single-breebe--edit-pen"
                     alt="edit breebe"
                     onClick={ editedBreebe === '' ? refuseEdit : submitEdit}
                     />
