@@ -10,6 +10,7 @@ import Title from '../Title/Title';
 import Input from '../Input/Input';
 import User from '../User/User';
 import Tags from '../Tags/Tags';
+import EmptyWarning from '../EmptyWarning/EmptyWarning';
 import quotes from '../assets/quotes';
 
 // == SVGS
@@ -19,7 +20,7 @@ import breebeback from '../assets/breebeback.svg';
 import breebecurved from '../assets/breebecurved.svg';
 
 const Home = () => {
-   const [AccountPage, setAccountPage] = useState(true);
+   
    const [breebes, setBreebes] = useState([]);
    const [pseudo, setPseudo] = useState('');
    const [errors, setErrors] = useState([]);
@@ -29,7 +30,8 @@ const Home = () => {
    const [editMode, setEditMode] = useState(false);
    const [editedBreebe, setEditedBreebe] = useState('');
    const [breebesTagFiltered, setBreebesTagFiltered] = useState([]);
-   const [placeholderEdit, setPlaceholderEdit] = useState('');
+   const [singleBreebe, setSingleBreebe] = useState({});
+   const [empty, setEmpty] = useState(false);
 
    const history = useHistory();
 
@@ -90,9 +92,9 @@ const Home = () => {
         setEditedBreebe(event.target.value);
    }
 
-   const refuseEdit = () => (
-       <div>Ne me laissez pas vide</div>
-   )
+   const refuseEdit = () => {
+      setEmpty(true);
+   }
 
    const handleTag = (event) => {
        setTag(event.target.value);
@@ -137,27 +139,30 @@ const Home = () => {
             })
    }
 
-   
+   const closeModal = (e) => {
+       if(e.target.className ==='modal') {
+           e.stopPropagation();
+           setEditMode(false);
+           setEmpty(false);
+       }
+   }
 
 
   return (
   <div>
       <Title />
         <User pseudo={pseudo} onClick={logOut} />
-     
-      <button type="button"className="get-breebes" onClick={getBreebes}>Mes breebes</button>
+        <button type="button"className="get-breebes" onClick={getBreebes}>Mes breebes</button>
 
-      <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 425 200"  className="svg-text">
-  <defs>
-   
-    <path d="M6,150C49.63,93,105.79,36.65,156.2,47.55,207.89,58.74,213,131.91,264,150c40.67,14.43,108.57-6.91,229-145" id="txt-path"></path>
-  </defs>
-
-  <text fill="#E2A9BD" fontSize="30" fontFamily="Ramaraja" width="425" height="300" fontWeight="60">
-    <textPath startOffset="0" xlinkHref="#txt-path">L'interminable est la spécialité des indécis</textPath>
-  </text>
-</svg>
-            
+    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 425 200"  className="svg-text">
+        <defs>
+            <path d="M6,150C49.63,93,105.79,36.65,156.2,47.55,207.89,58.74,213,131.91,264,150c40.67,14.43,108.57-6.91,229-145" id="txt-path"></path>
+        </defs>
+        <text fill="#E2A9BD" fontSize="30" fontFamily="Ramaraja" width="425" height="300" fontWeight="60">
+        <textPath startOffset="0" xlinkHref="#txt-path">L'interminable est la spécialité des indécis</textPath>
+        </text>
+    </svg>
+    
     <form>
       <Input
       type="text"
@@ -182,7 +187,7 @@ const Home = () => {
                      onClick={() => {
                          setEditMode(true);
                          setBreebeId(breebe.breebeId)
-                         setPlaceholderEdit(breebe.body)
+                         setSingleBreebe(breebe)
                         }}
                      />
                      <img src={breebescribble} 
@@ -195,28 +200,34 @@ const Home = () => {
                 </div>
       ))}
       {editMode && (
-                    <div className="modal" >
+                    <div className="modal" onClick={(event) => {
+                        closeModal(event);
+                        }}>
                     <form className="modal-main">
+                    <label className="modal--title"><h3 className="modal--label"> Breebe : </h3> {empty ? <EmptyWarning /> : singleBreebe.body}
                     <input
                     className="single-breebe--input"
-                   placeholder={placeholderEdit}
                     value={editedBreebe}
                     onChange={handleEdit}
                     />
+                    </label>
+                    <label className="modal--title"><h3 className="modal--label">Thème : </h3>{singleBreebe.tag}
                     <input
                      className="single-breebe--tag-edit"
-                     placeholder="thème"
                      value={tagBreebe}
                      onChange={handleTag}
                      />
+                    </label>
                     <img src={breebepen} 
                     className="single-breebe--edit-pen"
                     alt="edit breebe"
-                    onClick={ editedBreebe === '' ? refuseEdit : submitEdit}
+                    onClick={editedBreebe === '' ? refuseEdit : submitEdit}
                     />
                       <img src={breebeback}
                     className="single-breebe--back" 
-                    onClick={() => setEditMode(false)} 
+                    onClick={() => {
+                        setEmpty(false);
+                        setEditMode(false)}} 
                     alt="go back"
                     />
                     </form>

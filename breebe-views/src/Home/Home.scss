@@ -55,7 +55,7 @@
         border: none;
         border-radius: 30px;
         margin: auto;
-        background-color: transparent;
+        background-color: $default-color;
         width: 90%;
         text-align: center;
         box-sizing: content-box;
@@ -65,7 +65,7 @@
         border: none;
         border-radius: 30px;
         margin: auto;
-        background-color: transparent;
+        background-color: $default-color;
         text-align: center;
         box-sizing: content-box;
     }
@@ -106,12 +106,20 @@
 }
 
 .modal {
+    font-family: 'Beth Ellen', cursive;
     position: fixed;
     top: 0;
     left: 0;
     width:100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
+    &--label {
+        color: $deep-pink;
+    }
+    &--title {
+        margin: $mini-gutter;
+        font-size: .8rem;
+    }
 }
 
 .modal-main {
