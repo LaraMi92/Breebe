@@ -2,6 +2,7 @@
 import {useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import SimpleCloud from '../BreebeCloud/reactwordcloud';
 
 //== Local Components imports
 import './Home.scss';
@@ -32,6 +33,7 @@ const Home = () => {
    const [breebesTagFiltered, setBreebesTagFiltered] = useState([]);
    const [singleBreebe, setSingleBreebe] = useState({});
    const [empty, setEmpty] = useState(false);
+   const [cloud, setCloud] = useState([]);
 
    const history = useHistory();
 
@@ -147,12 +149,38 @@ const Home = () => {
        }
    }
 
-
+   const prepareStats = () => {
+    const wordFreq = (string) => {
+    
+        let words = string.toString().replace(/[.]/g, '').split(/\s/);
+        let freqMap = {};
+        let arr = [];
+        let final = [];
+        words.forEach(function(w) {
+            if (!freqMap[w]) {
+                freqMap[w] = 0;
+            }
+            freqMap[w] += 1;
+        });
+        
+        arr = Object.entries(freqMap);
+       final.push(arr.map(el => ({text: el[0], value: el[1]})))
+        return final;
+    }
+    const breebeWords = breebes.map(breebe => breebe.body);
+    console.log(wordFreq(breebeWords));
+    const cloud = wordFreq(breebeWords);
+    setCloud(cloud);
+     
+   }
   return (
   <div>
       <Title />
         <User pseudo={pseudo} onClick={logOut} />
         <button type="button"className="get-breebes" onClick={getBreebes}>Mes breebes</button>
+        {breebes.length !== 0 && <button type="button"className="get-breebes" onClick={prepareStats}>Mes stats</button>} 
+
+        {cloud.length !== 0 && <SimpleCloud words={cloud} />}
 
     <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 425 200"  className="svg-text">
         <defs>
