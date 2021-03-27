@@ -1,6 +1,7 @@
 @import 'src/styles/vars.scss';
 @import 'src/styles/reset.scss';
 @import url('https://fonts.googleapis.com/css2?family=Ramaraja&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Beth+Ellen&display=swap');
 
 .submit {
     font-family: 'Ramaraja', serif;
@@ -22,4 +23,28 @@
     color: $deep-pink;
     font-family: 'Ramaraja', serif;
     font-size: $basic-gutter;
+}
+
+@keyframes movedown {
+    100% {
+        transform: translateY(100%);
+        top: 100vh;
+    }
+}
+
+.svgs {
+    display: flex;
+    flex-flow: row wrap;
+    height: 60vh;
+    width: 100%;
+    position: absolute;
+    z-index: -3;
+}
+
+.svg-text {
+    height: 40%;
+    display: block;
+    margin: auto;
+    transform: translateY(0);
+    animation: movedown 10s alternate infinite;
 }

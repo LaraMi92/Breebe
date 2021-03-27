@@ -12,7 +12,7 @@ import Input from '../Input/Input';
 import User from '../User/User';
 import Tags from '../Tags/Tags';
 import EmptyWarning from '../EmptyWarning/EmptyWarning';
-import quotes from '../assets/quotes';
+
 
 // == SVGS
 import breebepen from '../assets/breebepen.svg';

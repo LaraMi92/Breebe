@@ -1,10 +1,8 @@
- <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 400 400"  className="svg-text">
-  <defs>
-   
-    <path d="M0, 200a200, 200 0 1, 0 400, 0a200, 200 0 1, 0 -400, 0" id="txt-path"></path>
-  </defs>
-
-  <text fill="#E2A9BD" fontSize="60" fontFamily="Ramaraja" fontWeight="60">
-    <textPath startOffset="0" xlinkHref="#txt-path">Breebe Breebe Breebe Breebe</textPath>
-  </text>
-</svg>
+  <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 425 200"  className="svg-text">
+        <defs>
+            <path d="M6,150C49.63,93,105.79,36.65,156.2,47.55,207.89,58.74,213,131.91,264,150c40.67,14.43,108.57-6.91,229-145" id="txt-path"></path>
+        </defs>
+        <text fill="#E2A9BD" fontSize="30" fontFamily="Ramaraja" width="425" height="300" fontWeight="60">
+        <textPath startOffset="0" xlinkHref="#txt-path">L'interminable est la spécialité des indécis</textPath>
+        </text>
+    </svg>

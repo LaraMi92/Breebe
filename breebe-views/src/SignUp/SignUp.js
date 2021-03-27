@@ -7,6 +7,7 @@ import axios from 'axios';
 import './SignUp.scss';
 import Input from '../Input/Input';
 import Title from '../Title/Title';
+import breebecurved from '../assets/breebecurved.svg';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
@@ -48,8 +49,43 @@ const SignUp = () => {
                    setLoader(false);
                })
      }
+
   return (
     <div>
+        <div className="svgs">
+         <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 425 200"  className="svg-text">
+        <defs>
+            <path d="M6,150C49.63,93,105.79,36.65,156.2,47.55,207.89,58.74,213,131.91,264,150c40.67,14.43,108.57-6.91,229-145" id="txt-path"></path>
+        </defs>
+        <text fill="#E2A9BD" fontSize="30" fontFamily="Ramaraja" width="425" height="300" fontWeight="60">
+        <textPath startOffset="0" xlinkHref="#txt-path">N’a de convictions que celui qui n’a rien approfondi</textPath>
+        </text>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 425 200"  className="svg-text">
+        <defs>
+            <path d="M6,150C49.63,93,105.79,36.65,156.2,47.55,207.89,58.74,213,131.91,264,150c40.67,14.43,108.57-6.91,229-145" id="txt-path"></path>
+        </defs>
+        <text fill="#E2A9BD" fontSize="20" fontFamily="Ramaraja" width="425" height="300" fontWeight="60">
+        <textPath startOffset="0" xlinkHref="#txt-path">Dans un monde sans mélancolie, les rossignols se mettraient à roter</textPath>
+        </text>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 425 200"  className="svg-text">
+        <defs>
+            <path d="M6,150C49.63,93,105.79,36.65,156.2,47.55,207.89,58.74,213,131.91,264,150c40.67,14.43,108.57-6.91,229-145" id="txt-path"></path>
+        </defs>
+        <text fill="#E2A9BD" fontSize="20" fontFamily="Ramaraja" width="425" height="300" fontWeight="60">
+        <textPath startOffset="0" xlinkHref="#txt-path">Se méfier des penseurs dont l'esprit ne fonctionne qu'à partir d'une citation</textPath>
+        </text>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 425 200"  className="svg-text">
+        <defs>
+            <path d="M6,150C49.63,93,105.79,36.65,156.2,47.55,207.89,58.74,213,131.91,264,150c40.67,14.43,108.57-6.91,229-145" id="txt-path"></path>
+        </defs>
+        <text fill="#E2A9BD" fontSize="30" fontFamily="Ramaraja" width="425" height="300" fontWeight="60">
+        <textPath startOffset="0" xlinkHref="#txt-path">Espérer, c’est démentir l’avenir</textPath>
+        </text>
+        </svg>
+    </div>
         <Title />
     <form onSubmit={handleSubmit}>
         <Input
