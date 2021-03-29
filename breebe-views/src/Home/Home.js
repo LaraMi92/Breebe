@@ -170,7 +170,7 @@ const Home = () => {
         });
         
         arr = Object.entries(freqMap);
-       final.push(arr.map(el => ({text: el[0], value: el[1]})))
+       final.push(arr.map(el => ({text: el[0], value: el[1]*100})))
         return final;
     }
     const breebeWords = breebes.map(breebe => breebe.body);
@@ -185,8 +185,8 @@ const Home = () => {
         <User pseudo={pseudo} onClick={logOut} />
         <button type="button"className="get-breebes" onClick={getBreebes}>Mes breebes</button>
         {breebes.length !== 0 && <button type="button"className="get-breebes" onClick={prepareStats}>Mes stats</button>} 
-
-        {cloud.length !== 0 && <SimpleCloud words={cloud} />}
+        {console.log(cloud)}
+        {cloud.length !== 0 && <div className="cloud"><SimpleCloud words={cloud[0]} /></div>}
 
     <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 425 200"  className="svg-text-sub">
         <defs>
