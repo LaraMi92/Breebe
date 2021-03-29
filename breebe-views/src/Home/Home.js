@@ -39,7 +39,7 @@ const Home = () => {
 
    const history = useHistory();
 
-   const logOut = (event) => {
+   const logOut = () => {
        localStorage.removeItem('AuthToken');
         history.push('/login');
    }
