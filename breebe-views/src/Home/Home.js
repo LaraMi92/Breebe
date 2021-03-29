@@ -35,6 +35,7 @@ const Home = () => {
    const [empty, setEmpty] = useState(false);
    const [cloud, setCloud] = useState([]);
    const [loader, setLoader] = useState(true);
+   const [words, showWords] = useState(false);
 
    const history = useHistory();
 
@@ -179,14 +180,25 @@ const Home = () => {
     setCloud(cloud);
      
    }
+
+   const closeWordCloud = (e) => {
+    if(e.target.className ==='modal') {
+        e.stopPropagation();
+       showWords(false);
+    }
+   }
   return (
   <div>
       <Title />
         <User pseudo={pseudo} onClick={logOut} />
         <button type="button"className="get-breebes" onClick={getBreebes}>Mes breebes</button>
-        {breebes.length !== 0 && <button type="button"className="get-breebes" onClick={prepareStats}>Mes stats</button>} 
+        {breebes.length !== 0 && <button type="button"className="get-breebes" onClick={() => {
+            setLoader(true);
+            prepareStats();
+            setLoader(false);
+            showWords(true)}}>Brumulus</button>} 
         {console.log(cloud)}
-        {cloud.length !== 0 && <div className="cloud"><SimpleCloud words={cloud[0]} /></div>}
+        {words && <div className="modal" onClick={(event) => closeWordCloud(event)}><div className="cloud"><SimpleCloud words={cloud[0]} /></div></div>}
 
     <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 425 200"  className="svg-text-sub">
         <defs>
