@@ -98,7 +98,7 @@
     outline: none;
 }
 
-.svg-text{
+.svg-text-sub {
     width: 40%;
     display: block;
     margin: auto;
@@ -132,3 +132,30 @@
     left:50%;
     transform: translate(-50%,-50%);
 }
+
+.loader{
+    position: absolute;
+    top: 30vh;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    z-index: 10;
+}
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(359deg);
+    }
+}
+.display{
+    &--loader{
+        width: 20%;
+        margin: auto;
+        animation: rotation 5s infinite linear;
+    }
+    &--none{
+        display: none;
+    }
+}
+

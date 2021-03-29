@@ -18,7 +18,7 @@ import EmptyWarning from '../EmptyWarning/EmptyWarning';
 import breebepen from '../assets/breebepen.svg';
 import breebescribble from '../assets/breebescribble.svg';
 import breebeback from '../assets/breebeback.svg';
-import breebecurved from '../assets/breebecurved.svg';
+import Loader from '../assets/Loader.svg';
 
 const Home = () => {
    
@@ -34,6 +34,7 @@ const Home = () => {
    const [singleBreebe, setSingleBreebe] = useState({});
    const [empty, setEmpty] = useState(false);
    const [cloud, setCloud] = useState([]);
+   const [loader, setLoader] = useState(true);
 
    const history = useHistory();
 
@@ -43,8 +44,10 @@ const Home = () => {
    }
    useEffect(() => {
        authMw(history);
+       
        const authToken = localStorage.getItem('AuthToken');
        axios.defaults.headers.common = { Authorization: `${authToken}`};
+       setLoader(true);
        axios.get('/user')
             .then((response) => {
                 setPseudo(response.data.userCredentials.pseudo);
@@ -53,18 +56,21 @@ const Home = () => {
                 if(error.response.status === 403){
                     history.push("/login")
                 };
-                setErrors(error);
+                setErrors(error)
             })
-   })
+            .finally(() => setLoader(false))
+   }, [])
 
    const getBreebes = () => {
+    setLoader(true);
     axios.get('/breebes')
     .then((response) => {
         setBreebes(response.data);
     })
     .catch((error) => {
-        setErrors(error);
+        setErrors(error)
     })
+    .finally(() => {setLoader(false)})
    }
 
    const setNewBreebe = (event) => {
@@ -182,7 +188,7 @@ const Home = () => {
 
         {cloud.length !== 0 && <SimpleCloud words={cloud} />}
 
-    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 425 200"  className="svg-text">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 425 200"  className="svg-text-sub">
         <defs>
             <path d="M6,150C49.63,93,105.79,36.65,156.2,47.55,207.89,58.74,213,131.91,264,150c40.67,14.43,108.57-6.91,229-145" id="txt-path"></path>
         </defs>
@@ -190,7 +196,7 @@ const Home = () => {
         <textPath startOffset="0" xlinkHref="#txt-path">L'interminable est la spécialité des indécis</textPath>
         </text>
     </svg>
-    
+    {loader === true ? <div className="display"><img src={Loader} className="display--loader" alt="loader" /></div> : <div className="display--none"></div>}
     <form>
       <Input
       type="text"
@@ -200,6 +206,7 @@ const Home = () => {
       />
         <button type="submit" onClick={handleSubmitNew} className="submit-breebe">''</button>
     </form>
+   
     {breebes.length !== 0 && <Tags breebes={breebes} filterTags={filterTags}/>} 
 
     <div className="breebes">
