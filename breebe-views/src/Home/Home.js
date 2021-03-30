@@ -3,6 +3,7 @@ import {useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import SimpleCloud from '../BreebeCloud/reactwordcloud';
+import {saveSvgAsPng} from 'save-svg-as-png';
 
 //== Local Components imports
 import './Home.scss';
@@ -187,6 +188,8 @@ const Home = () => {
        showWords(false);
     }
    }
+
+
   return (
   <div>
       <Title />
@@ -198,7 +201,9 @@ const Home = () => {
             setLoader(false);
             showWords(true)}}>Brumulus</button>} 
         {console.log(cloud)}
-        {words && <div className="modal" onClick={(event) => closeWordCloud(event)}><div className="cloud"><SimpleCloud words={cloud[0]} /></div></div>}
+        {words && <div className="modal" onClick={(event) => closeWordCloud(event)}>
+            <div className="cloud"><SimpleCloud words={cloud[0]} />
+            </div></div>}
 
     <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 425 200"  className="svg-text-sub">
         <defs>

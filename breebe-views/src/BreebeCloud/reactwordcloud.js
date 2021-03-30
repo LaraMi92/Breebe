@@ -1,9 +1,17 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import ReactWordcloud from 'react-wordcloud';
+import {saveSvgAsPng} from 'save-svg-as-png';
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 
 const SimpleWordcloud = ({words}) => {
+     const wordRef = useRef(null);
+
+     const handleSave = () => {
+          const svg = wordRef.current.querySelector('svg');
+          console.log(svg)
+          saveSvgAsPng(svg, 'brumulus.png');
+     }
      const options = {
           colors: ["#ACC5A6", "#778899", "#E2A9BD"],
           enableTooltip: false,
@@ -20,8 +28,13 @@ const SimpleWordcloud = ({words}) => {
           transitionDuration: 1000
         };
         return(
-    
-     <ReactWordcloud words={words} options={options}/>)
+          <>
+          <span ref={wordRef}>
+          <ReactWordcloud words={words} options={options} />
+          </span>
+          <button type="button" className="get-breebes" onClick={handleSave}>Sauvegarder</button>
+          </>)
+     
    
 }
 
