@@ -26,6 +26,7 @@ const Home = () => {
    const [breebes, setBreebes] = useState([]);
    const [pseudo, setPseudo] = useState('');
    const [errors, setErrors] = useState([]);
+   const [error, setError] = useState('');
    const [breebeId, setBreebeId] = useState('');
    const [bodyBreebe, setBody] = useState('');
    const [tagBreebe, setTag] = useState('');
@@ -61,7 +62,9 @@ const Home = () => {
                 setErrors(error)
             })
             .finally(() => setLoader(false))
-   }, [])
+   }, []);
+
+ 
 
    const getBreebes = () => {
     setLoader(true);
@@ -76,18 +79,21 @@ const Home = () => {
    }
 
    const setNewBreebe = (event) => {
-       setEmpty('');
+       setErrors('');
        setBody(event.target.value);
    }
 
+   const setBreebesAgain = (breebes) => {
+       setBreebes(breebes);
+   }
 
    const handleSubmitNew = (event) => { 
        event.preventDefault();
     if(bodyBreebe.replace(/\s/g,"") === ""){
-        setEmpty('vous devez me remplir');
+        setError('vous devez me remplir');
         return;
         }
-        setEmpty('');
+        setError('');
         setLoader(true);
         authMw(history);
         const newBreebe = {
@@ -125,6 +131,10 @@ const Home = () => {
    const filterTags = (id) => {
         const filteredTag = breebes.filter((breebe) => breebe.breebeId === id);
         setBreebes(filteredTag);
+        // add filtered breebes + spread breebes [...] 
+        //to setBreebes
+        //then in tags section in render, pass the breebes[length - 1] to get all breebes
+        //and breebes[0] for the filtered ones
    }
 
    const submitEdit = (event) => {
@@ -235,14 +245,15 @@ const Home = () => {
       value={bodyBreebe}
       className="breebe-form--input"
       />
-        <div className="error">{empty !== "" && empty}</div>
+        <div className="error">{error !== "" && <EmptyWarning />}</div>
       <button type="submit" onClick={handleSubmitNew} className="breebe-form--submit">soumettre</button>
-      
-      
-    
     </form>
    
-    {breebes.length !== 0 && <Tags breebes={breebes} filterTags={filterTags}/>} 
+    {breebes.length !== 0 && (
+    <>
+     <div className="tags--tag all" onClick={() => setBreebesAgain(breebes)}>Tous</div>
+    <Tags breebes={breebes} filterTags={filterTags}/>
+    </>)} 
 
     <div className="breebes">
       {breebes.length !== 0 && breebes.map((breebe, index) => (

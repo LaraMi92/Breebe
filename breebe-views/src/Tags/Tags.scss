@@ -20,4 +20,9 @@
     }
 }
 
-  
+.all {
+    display: block;
+    background: linear-gradient(90deg, #A4CDBD -35.29%, #D79A9A 100%);
+    padding: 0;
+    margin-left: $medium-gutter;
+}

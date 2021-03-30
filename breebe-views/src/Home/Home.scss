@@ -8,6 +8,10 @@
     font-family: 'Ramaraja', serif;
 }
 
+*:focus {
+    outline: none;
+}
+
 /* FORM*/
 .breebe-form {
     margin: auto;
@@ -23,13 +27,15 @@
         padding-left: .5rem;
         padding-right: .5rem;
         padding-top: 0;
-        color: #DBCBCB;
         width: 10%;
     }
 }
 
+/*BUTTONS */
 
-
+.get-breebes, .breebe-form--submit, .tags--tag, .user--logout, .single-breebe--edit, .single-breebe--back, .single-breebe--delete {
+    cursor: pointer;
+}
 .get-breebes {
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
@@ -106,9 +112,7 @@
 
 }
 
-*:focus {
-    outline: none;
-}
+
 
 .svg-text-sub {
     width: 40%;
