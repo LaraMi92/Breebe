@@ -76,11 +76,19 @@ const Home = () => {
    }
 
    const setNewBreebe = (event) => {
+       setEmpty('');
        setBody(event.target.value);
    }
 
-   const handleSubmitNew = (event) => {
-        event.preventDefault();
+
+   const handleSubmitNew = (event) => { 
+       event.preventDefault();
+    if(bodyBreebe.replace(/\s/g,"") === ""){
+        setEmpty('vous devez me remplir');
+        return;
+        }
+        setEmpty('');
+        setLoader(true);
         authMw(history);
         const newBreebe = {
             body: bodyBreebe,
@@ -94,8 +102,12 @@ const Home = () => {
         const authToken = localStorage.getItem('AuthToken');
         axios.defaults.headers.common = {Authorization: `${authToken}`};
         axios(options)
-            .then(()=> window.location.reload())
+            /* .then(()=> window.location.reload()) */
+            .then(() => getBreebes())
             .catch((error) => setErrors(error))
+            .finally(() => {
+                setLoader(false);
+                setBody('')})
    }
 
    const handleEdit = (event) => {
@@ -176,7 +188,6 @@ const Home = () => {
         return final;
     }
     const breebeWords = breebes.map(breebe => breebe.body);
-    console.log(wordFreq(breebeWords));
     const cloud = wordFreq(breebeWords);
     setCloud(cloud);
      
@@ -193,7 +204,7 @@ const Home = () => {
   return (
   <div>
       <Title />
-        <User pseudo={pseudo} onClick={logOut} />
+        <User pseudo={pseudo} logOut={logOut} />
         <button type="button"className="get-breebes" onClick={getBreebes}>Mes breebes</button>
         {breebes.length !== 0 && <button type="button"className="get-breebes" onClick={() => {
             setLoader(true);
@@ -202,8 +213,10 @@ const Home = () => {
             showWords(true)}}>Brumulus</button>} 
         {console.log(cloud)}
         {words && <div className="modal" onClick={(event) => closeWordCloud(event)}>
-            <div className="cloud"><SimpleCloud words={cloud[0]} />
-            </div></div>}
+            <div className="cloud">
+                <SimpleCloud words={cloud[0]} />
+            </div>
+            </div>}
 
     <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 425 200"  className="svg-text-sub">
         <defs>
@@ -214,14 +227,19 @@ const Home = () => {
         </text>
     </svg>
     {loader === true ? <div className="display"><img src={Loader} className="display--loader" alt="loader" /></div> : <div className="display--none"></div>}
-    <form>
+    <form className="breebe-form">
       <Input
       type="text"
       placeholder="une nouvelle breebe...|"
       onChange={setNewBreebe}
       value={bodyBreebe}
+      className="breebe-form--input"
       />
-        <button type="submit" onClick={handleSubmitNew} className="submit-breebe">''</button>
+        <div className="error">{empty !== "" && empty}</div>
+      <button type="submit" onClick={handleSubmitNew} className="breebe-form--submit">soumettre</button>
+      
+      
+    
     </form>
    
     {breebes.length !== 0 && <Tags breebes={breebes} filterTags={filterTags}/>} 

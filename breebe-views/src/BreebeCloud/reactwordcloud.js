@@ -17,7 +17,7 @@ const SimpleWordcloud = ({words}) => {
           enableTooltip: false,
           deterministic: false,
           fontFamily: "impact",
-          fontSizes: [5, 60],
+          fontSizes: [30, 60],
           fontStyle: "normal",
           fontWeight: "normal",
           padding: 1,
