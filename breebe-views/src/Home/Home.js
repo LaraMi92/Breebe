@@ -1,9 +1,9 @@
 //== NPM imports
-import {useState, useEffect, useRef } from 'react';
+import {useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import SimpleCloud from '../BreebeCloud/reactwordcloud';
-import {saveSvgAsPng} from 'save-svg-as-png';
+
 
 //== Local Components imports
 import './Home.scss';
@@ -13,7 +13,10 @@ import Input from '../Input/Input';
 import User from '../User/User';
 import Tags from '../Tags/Tags';
 import EmptyWarning from '../EmptyWarning/EmptyWarning';
+import Brouvoir from '../Brouvoir/Brouvoir';
 
+//== Assets
+import endings from '../assets/BrouvoirEndings';
 
 // == SVGS
 import breebepen from '../assets/breebepen.svg';
@@ -38,6 +41,8 @@ const Home = () => {
    const [cloud, setCloud] = useState([]);
    const [loader, setLoader] = useState(true);
    const [words, showWords] = useState(false);
+    const [brouvoir, showBrouvoir] = useState(false);
+    const [brouve, setBrouve] = useState('');
 
    const history = useHistory();
 
@@ -83,9 +88,6 @@ const Home = () => {
        setBody(event.target.value);
    }
 
-   const setBreebesAgain = (breebes) => {
-       setBreebes(breebes);
-   }
 
    const handleSubmitNew = (event) => { 
        event.preventDefault();
@@ -131,10 +133,6 @@ const Home = () => {
    const filterTags = (id) => {
         const filteredTag = breebes.filter((breebe) => breebe.breebeId === id);
         setBreebes(filteredTag);
-        // add filtered breebes + spread breebes [...] 
-        //to setBreebes
-        //then in tags section in render, pass the breebes[length - 1] to get all breebes
-        //and breebes[0] for the filtered ones
    }
 
    const submitEdit = (event) => {
@@ -203,10 +201,34 @@ const Home = () => {
      
    }
 
+   const prepareBrouvoir = () => {
+    const toEndWith = endings[Math.floor(Math.random() * (endings.length - 1) + 1)];
+    const allBodies = breebes.map(breebe => breebe.body);
+    const body = allBodies[Math.floor(Math.random() * (allBodies.length - 1) + 1)]
+    const array = body.toString().split(' ');
+    const letters = array.map(item => item.split(''));
+    const first = letters.map(item => item.shift());
+  
+    for(let i=0; i < letters.length; i++){
+        letters[i].push(first[i]);
+    }
+    const result = letters.map(item => (item += `${toEndWith}`).replace(/,+/g, '')).join(' ');
+    
+   setBrouve(result);
+    }
+   
+
    const closeWordCloud = (e) => {
     if(e.target.className ==='modal') {
         e.stopPropagation();
        showWords(false);
+    }
+   }
+
+   const closeBrouvoir = (e) => {
+    if(e.target.className ==='modal') {
+        e.stopPropagation();
+        showBrouvoir(false);
     }
    }
 
@@ -215,13 +237,24 @@ const Home = () => {
   <div>
       <Title />
         <User pseudo={pseudo} logOut={logOut} />
+        
         <button type="button"className="get-breebes" onClick={getBreebes}>Mes breebes</button>
-        {breebes.length !== 0 && <button type="button"className="get-breebes" onClick={() => {
+        {breebes.length !== 0 && 
+        <div className="buttons">
+        <button type="button"className="get-breebes" onClick={() => {
             setLoader(true);
             prepareStats();
             setLoader(false);
-            showWords(true)}}>Brumulus</button>} 
-        {console.log(cloud)}
+            showWords(true)}}>Brumulus</button>
+        <button type="button" className="get-breebes" onClick={() => {
+            setLoader(true);
+            prepareBrouvoir();
+            setLoader(false);
+            showBrouvoir(true)
+        }}>Brouvoir</button>   
+        </div> 
+            } 
+        {brouvoir && <div className="modal" onClick={(event) => closeBrouvoir(event)}><Brouvoir brouve={brouve} /></div>}
         {words && <div className="modal" onClick={(event) => closeWordCloud(event)}>
             <div className="cloud">
                 <SimpleCloud words={cloud[0]} />
@@ -251,8 +284,8 @@ const Home = () => {
    
     {breebes.length !== 0 && (
     <>
-     <div className="tags--tag all" onClick={() => setBreebesAgain(breebes)}>Tous</div>
     <Tags breebes={breebes} filterTags={filterTags}/>
+    <div className="tags--tag all" onClick={getBreebes}>Tous</div>
     </>)} 
 
     <div className="breebes">
