@@ -16,6 +16,7 @@ import EmptyWarning from '../EmptyWarning/EmptyWarning';
 import Brouvoir from '../Brouvoir/Brouvoir';
 
 //== Assets
+import proxy from '../util/proxy';
 import endings from '../assets/BrouvoirEndings';
 
 // == SVGS
@@ -56,7 +57,7 @@ const Home = () => {
        const authToken = localStorage.getItem('AuthToken');
        axios.defaults.headers.common = { Authorization: `${authToken}`};
        setLoader(true);
-       axios.get('/user')
+       axios.get(`${proxy}/user`)
             .then((response) => {
                 setPseudo(response.data.userCredentials.pseudo);
             })
@@ -73,7 +74,7 @@ const Home = () => {
 
    const getBreebes = () => {
     setLoader(true);
-    axios.get('/breebes')
+    axios.get(`${proxy}/breebes`)
     .then((response) => {
         setBreebes(response.data);
     })
@@ -103,7 +104,7 @@ const Home = () => {
             tag: null
         };
         const options = {
-            url: '/breebe',
+            url: `${proxy}/breebe`,
             method: 'post',
             data: newBreebe
         };
@@ -143,7 +144,7 @@ const Home = () => {
             tag: tagBreebe
         };
         const options = {
-            url: `/breebe/${breebeId}`,
+            url: `${proxy}/breebe/${breebeId}`,
             method: 'put',
             data: edited
         }
@@ -160,7 +161,7 @@ const Home = () => {
        const authToken = localStorage.getItem('AuthToken');
        axios.defaults.headers.common = {Authorization: `${authToken}`};
        let id = breebe.breebeId;
-       axios.delete(`breebe/${id}`)
+       axios.delete(`${proxy}/breebe/${id}`)
             .then(() => {
                 window.location.reload();
             })
