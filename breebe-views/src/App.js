@@ -7,6 +7,7 @@ import './App.scss';
 import Login from './Login/Login';
 import SignUp from './SignUp/SignUp';
 import Home from './Home/Home';
+import NotFound from './NotFound/NotFound';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
        <Route exact path="/login" component={Login} />
        <Route exact path="/signup" component={SignUp} />
        <Route exact path="/" component={Home} />
+       <Route component={NotFound} />
      </Switch>
     </div>
     </Router>

@@ -1,0 +1,14 @@
+@import 'src/styles/vars.scss';
+@import url('https://fonts.googleapis.com/css2?family=Ramaraja&display=swap');
+
+.not-found{
+    font-family: "Ramaraja", serif;
+    font-size: 1.8em;
+    padding: $mini-gutter;
+    margin-top: $medium-gutter;
+}
+
+.link {
+    color: #000000;
+    font-size: $basic-gutter;
+}
