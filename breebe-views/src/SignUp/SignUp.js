@@ -5,6 +5,7 @@ import axios from 'axios';
 
 //== Local imports
 import './SignUp.scss';
+import proxy from '../util/proxy';
 import Input from '../Input/Input';
 import Title from '../Title/Title';
 import intro from '../assets/intro.svg';
@@ -38,7 +39,7 @@ const SignUp = () => {
              password: password,
              pseudo: pseudo
          };
-         axios.post('/signup', userData)
+         axios.post(`${proxy}/signup`, userData)
                .then((response) => {
                    localStorage.setItem('AuthToken', `Bearer ${response.data.token}`);
                    setLoader(false);
