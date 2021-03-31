@@ -283,10 +283,8 @@ const Home = () => {
     </form>
    
     {breebes.length !== 0 && (
-    <>
-    <Tags breebes={breebes} filterTags={filterTags}/>
-    <div className="tags--tag all" onClick={getBreebes}>Tous</div>
-    </>)} 
+    <Tags breebes={breebes} filterTags={filterTags} getBreebes={getBreebes} />
+    )} 
 
     <div className="breebes">
       {breebes.length !== 0 && breebes.map((breebe, index) => (

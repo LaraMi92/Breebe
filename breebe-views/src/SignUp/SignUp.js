@@ -7,7 +7,7 @@ import axios from 'axios';
 import './SignUp.scss';
 import Input from '../Input/Input';
 import Title from '../Title/Title';
-import breebecurved from '../assets/breebecurved.svg';
+import intro from '../assets/intro.svg';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
@@ -53,11 +53,11 @@ const SignUp = () => {
   return (
     <div>
         <div className="svgs">
-         <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 425 200"  className="svg-text">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 425 200"  className="svg-text">
         <defs>
             <path d="M6,150C49.63,93,105.79,36.65,156.2,47.55,207.89,58.74,213,131.91,264,150c40.67,14.43,108.57-6.91,229-145" id="txt-path"></path>
         </defs>
-        <text fill="#E2A9BD" fontSize="30" fontFamily="Ramaraja" width="425" height="300" fontWeight="60">
+        <text fill="#E2A9BD" fontSize="20" fontFamily="Ramaraja" width="425" height="300" fontWeight="60">
         <textPath startOffset="0" xlinkHref="#txt-path">N’a de convictions que celui qui n’a rien approfondi</textPath>
         </text>
     </svg>
@@ -81,12 +81,13 @@ const SignUp = () => {
         <defs>
             <path d="M6,150C49.63,93,105.79,36.65,156.2,47.55,207.89,58.74,213,131.91,264,150c40.67,14.43,108.57-6.91,229-145" id="txt-path"></path>
         </defs>
-        <text fill="#E2A9BD" fontSize="30" fontFamily="Ramaraja" width="425" height="300" fontWeight="60">
-        <textPath startOffset="0" xlinkHref="#txt-path">Espérer, c’est démentir l’avenir</textPath>
+        <text fill="#E2A9BD" fontSize="20" fontFamily="Ramaraja" width="425" height="300" fontWeight="60">
+        <textPath startOffset="0" xlinkHref="#txt-path">Le tort de la philosophie est d'être trop supportable</textPath>
         </text>
         </svg>
     </div>
         <Title />
+        <img src={intro} alt="sub title breebe" className="intro"/>
     <form onSubmit={handleSubmit}>
         <Input
         type="email"

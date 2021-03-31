@@ -8,7 +8,7 @@
     width: 90%;
     margin: auto;
     padding: $basic-gutter;
-    &--tag {
+    &--tag, .all {
         font-family: 'Ramaraja', serif;
         width: 10%;
         background-color: $light-pink;
@@ -20,9 +20,3 @@
     }
 }
 
-.all {
-    display: block;
-    background: linear-gradient(90deg, #A4CDBD -35.29%, #D79A9A 100%);
-    padding: 0;
-    margin-left: $medium-gutter;
-}

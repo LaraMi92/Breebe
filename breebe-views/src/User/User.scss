@@ -1,10 +1,9 @@
 @import 'src/styles/vars';
 @import url('https://fonts.googleapis.com/css2?family=Beth+Ellen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&display=swap');
 
-
-    
-
-.user {
+.user{
+    &--name{
     font-family: 'Beth Ellen', cursive;
     font-size: .8em;
     position: absolute;
@@ -14,17 +13,27 @@
     border-radius: 30px;
     padding: $basic-gutter;
     margin: $basic-gutter;
-    &--logout{
-    font-family: 'Beth Ellen', cursive;
-    font-size: .8em;
-    position: absolute;
-    top: 0;
-    right: 0%;
-    border-radius: 30px;
-    padding: $basic-gutter;
-    background-color: $deep-green;
-    margin: $basic-gutter;
-    border: none;
+    cursor: pointer;
     }
+    &--logout{
+        font-family: 'Beth Ellen', cursive;
+        font-size: .8em;
+        position: absolute;
+        top: 0;
+        right: 0%;
+        border-radius: 30px;
+        padding: $basic-gutter;
+        background-color: $deep-green;
+        margin: $basic-gutter;
+        border: none;
+        }
+    &--intro {
+        font-family: 'Jacques Francois', serif;
+        line-height: $medium-gutter;
+    }
+    
 }
 
+.bolder {
+    font-weight: 700;
+}

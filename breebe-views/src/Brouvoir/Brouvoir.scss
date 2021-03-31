@@ -1,0 +1,8 @@
+@import 'src/styles/vars.scss';
+@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&display=swap');
+
+.brouvoir {
+    font-family: 'Jacques Francois', serif;
+    padding: $basic-gutter;
+    box-sizing: content-box;
+}

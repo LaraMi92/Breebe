@@ -1,9 +1,9 @@
 import './Brouvoir.scss';
 
 const Brouvoir = ({brouve}) => (
-  <div className="modal-main brouvoir">
+  <span className="modal-main brouvoir">
     {brouve}
-    </div>
+    </span>
 )
 
 export default Brouvoir;
