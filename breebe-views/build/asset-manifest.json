@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.38893ab2.chunk.css",
+    "main.js": "/static/js/main.1a378b9b.chunk.js",
+    "main.js.map": "/static/js/main.1a378b9b.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.34265771.js",
+    "runtime-main.js.map": "/static/js/runtime-main.34265771.js.map",
+    "static/css/2.3cd4cbfd.chunk.css": "/static/css/2.3cd4cbfd.chunk.css",
+    "static/js/2.2899db34.chunk.js": "/static/js/2.2899db34.chunk.js",
+    "static/js/2.2899db34.chunk.js.map": "/static/js/2.2899db34.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.3cd4cbfd.chunk.css.map": "/static/css/2.3cd4cbfd.chunk.css.map",
+    "static/css/main.38893ab2.chunk.css.map": "/static/css/main.38893ab2.chunk.css.map",
+    "static/js/2.2899db34.chunk.js.LICENSE.txt": "/static/js/2.2899db34.chunk.js.LICENSE.txt",
+    "static/media/Loader.4c7064ae.svg": "/static/media/Loader.4c7064ae.svg",
+    "static/media/breebeback.a68d0012.svg": "/static/media/breebeback.a68d0012.svg",
+    "static/media/breebepen.024661f7.svg": "/static/media/breebepen.024661f7.svg",
+    "static/media/breebescribble.68b35134.svg": "/static/media/breebescribble.68b35134.svg",
+    "static/media/intro.78452737.svg": "/static/media/intro.78452737.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.34265771.js",
+    "static/css/2.3cd4cbfd.chunk.css",
+    "static/js/2.2899db34.chunk.js",
+    "static/css/main.38893ab2.chunk.css",
+    "static/js/main.1a378b9b.chunk.js"
+  ]
+}
