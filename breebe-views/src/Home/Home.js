@@ -43,7 +43,7 @@ const Home = () => {
    const [loader, setLoader] = useState(true);
    const [words, showWords] = useState(false);
     const [brouvoir, showBrouvoir] = useState(false);
-    const [brouve, setBrouve] = useState('');
+    const [brouve, setBrouve] = useState([]);
 
    const history = useHistory();
 
@@ -206,16 +206,16 @@ const Home = () => {
     const toEndWith = endings[Math.floor(Math.random() * (endings.length - 1) + 1)];
     const allBodies = breebes.map(breebe => breebe.body);
     const body = allBodies[Math.floor(Math.random() * (allBodies.length - 1) + 1)]
-    const array = body.toString().split(' ');
+    /* const array = body.toString().split(' ');
     const letters = array.map(item => item.split(''));
     const first = letters.map(item => item.shift());
   
     for(let i=0; i < letters.length; i++){
         letters[i].push(first[i]);
     }
-    const result = letters.map(item => (item += `${toEndWith}`).replace(/,+/g, '')).join(' ');
+    const result = letters.map(item => (item += `${toEndWith}`).replace(/,+/g, '')).join(' '); */
     
-   setBrouve(result);
+   setBrouve([body, toEndWith]);
     }
    
 
@@ -252,10 +252,10 @@ const Home = () => {
             prepareBrouvoir();
             setLoader(false);
             showBrouvoir(true)
-        }}>Brouvoir</button>   
+        }}>Abreeboir</button>   
         </div> 
             } 
-        {brouvoir && <div className="modal" onClick={(event) => closeBrouvoir(event)}><Brouvoir brouve={brouve} /></div>}
+        {brouvoir && <div className="modal" onClick={(event) => closeBrouvoir(event)}><Brouvoir breebe={brouve[0]} word={brouve[1]}/></div>}
         {words && <div className="modal" onClick={(event) => closeWordCloud(event)}>
             <div className="cloud">
                 <SimpleCloud words={cloud[0]} />
@@ -324,13 +324,14 @@ const Home = () => {
                     onChange={handleEdit}
                     />
                     </label>
-                    <label className="modal--title"><h3 className="modal--label">Thème : </h3>{singleBreebe.tag}
+                    <label className="modal--title"><h3 className="modal--label">Tag : </h3>{singleBreebe.tag}
                     <input
                      className="single-breebe--tag-edit"
                      value={tagBreebe}
                      onChange={handleTag}
                      />
                     </label>
+                    <div className="single-breebe--edited-icons">
                     <img src={breebepen} 
                     className="single-breebe--edit-pen"
                     alt="edit breebe"
@@ -343,6 +344,7 @@ const Home = () => {
                         setEditMode(false)}} 
                     alt="go back"
                     />
+                    </div>
                     </form>
                   
                    </div>

@@ -9,6 +9,7 @@ import proxy from '../util/proxy';
 import Input from '../Input/Input';
 import Title from '../Title/Title';
 import intro from '../assets/intro.svg';
+import EmptyWarning from '../EmptyWarning/EmptyWarning';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
@@ -16,7 +17,7 @@ const SignUp = () => {
     const [pseudo, setPseudo] = useState('');
     const [errors, setErrors] = useState([]);
     const [loader, setLoader] = useState(false);
-
+    const [empty, setEmpty] = useState(false);
     const history = useHistory();
 
     const handleEmail = (event) => {
@@ -50,7 +51,9 @@ const SignUp = () => {
                    setLoader(false);
                })
      }
-
+     const refuseSubmit = () => {
+        setEmpty(true);
+    }
   return (
     <div>
         <div className="svgs">
@@ -88,7 +91,7 @@ const SignUp = () => {
         </svg>
     </div>
         <Title />
-        <img src={intro} alt="sub title breebe" className="intro"/>
+       <div className="intro">Pour écrire, synthétiser, expérimenter, recommencer, rater mieux.</div>
     <form onSubmit={handleSubmit}>
         <Input
         type="email"
@@ -108,7 +111,8 @@ const SignUp = () => {
         placeholder="Mot de passe"
         value={password}
         />
-    <button type="submit"onClick={handleSubmit} className="submit">S'enregistrer</button>
+     {empty && <EmptyWarning />}
+    <button type="submit"onClick={email === '' || password === '' || pseudo === '' ? refuseSubmit :handleSubmit} className="submit">S'enregistrer</button>
     <div className="link"><a href="/login">J'ai un compte Breebe</a></div>
     </form>
     </div>

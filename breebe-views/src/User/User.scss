@@ -1,6 +1,7 @@
 @import 'src/styles/vars';
 @import url('https://fonts.googleapis.com/css2?family=Beth+Ellen&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ramaraja&display=swap');
 
 .user{
     &--name{
@@ -17,7 +18,7 @@
     }
     &--logout{
         font-family: 'Beth Ellen', cursive;
-        font-size: .8em;
+        font-size: .7em;
         position: absolute;
         top: 0;
         right: 0%;
@@ -26,10 +27,16 @@
         background-color: $deep-green;
         margin: $basic-gutter;
         border: none;
+        width: auto;
+        cursor: pointer;
         }
     &--intro {
-        font-family: 'Jacques Francois', serif;
+        width: auto;
+        font-family: 'Beth Ellen', cursive;
         line-height: $medium-gutter;
+        padding: $basic-gutter;
+        border-radius: 29px;
+        background: linear-gradient(90deg, #A4CDBD -35.29%, #D79A9A 100%);
     }
     
 }

@@ -8,12 +8,14 @@ import './Login.scss';
 import proxy from '../util/proxy';
 import Title from '../Title/Title';
 import Input from '../Input/Input';
+import EmptyWarning from '../EmptyWarning/EmptyWarning';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
     const [loader, setLoader] = useState(false);
+    const [empty, setEmpty] = useState(false);
 
     const history = useHistory();
 
@@ -42,6 +44,10 @@ const Login = () => {
                    setErrors(error);
                    setLoader(false);
                })
+     }
+
+     const refuseSubmit = () => {
+         setEmpty(true);
      }
   return (
       <div>
@@ -80,6 +86,7 @@ const Login = () => {
         </svg>
     </div>
       <Title />
+      <div className="intro">Pour écrire, synthétiser, expérimenter, recommencer, rater mieux.</div>
     <form onSubmit={handleSubmit}>
         <Input
         type="email"
@@ -94,7 +101,8 @@ const Login = () => {
         onChange={handlePassword}
         value={password}
         />
-    <button type="submit"className="submit" onClick={handleSubmit}>Se connecter</button>
+    {empty && <EmptyWarning />}
+    <button type="submit"className="submit" onClick={email === '' || password === '' ? refuseSubmit : handleSubmit}>Se connecter</button>
     <div className="link"><a href="/signup">Je n'ai pas de compte Breebe</a></div>
     </form>
     </div>

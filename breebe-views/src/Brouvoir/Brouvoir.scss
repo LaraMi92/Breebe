@@ -3,6 +3,12 @@
 
 .brouvoir {
     font-family: 'Jacques Francois', serif;
+    width: auto;
     padding: $basic-gutter;
     box-sizing: content-box;
+    padding: $basic-gutter;
+    border-radius: 29px;
+    background: #F2CFDC;
+    box-shadow: inset 8px 8px 60px #9b848d,
+                inset -8px -8px 60px #ffffff;
 }

@@ -1,8 +1,12 @@
 import './Brouvoir.scss';
 
-const Brouvoir = ({brouve}) => (
+const Brouvoir = ({breebe, word}) => (
   <span className="modal-main brouvoir">
-    {brouve}
+   Et si vous ajoutiez à cette breebe :
+    <p>{breebe}</p>
+    Le mot
+    <p>{word}</p>
+    ?
     </span>
 )
 

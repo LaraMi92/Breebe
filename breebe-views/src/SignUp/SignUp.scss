@@ -2,6 +2,7 @@
 @import 'src/styles/reset.scss';
 @import url('https://fonts.googleapis.com/css2?family=Ramaraja&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Beth+Ellen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Miniver&display=swap');
 
 .submit {
     font-family: 'Ramaraja', serif;
@@ -24,6 +25,7 @@
     color: #000000;
     font-family: 'Ramaraja', serif;
     font-size: $basic-gutter;
+    padding: $mini-gutter;
 }
 
 @keyframes movedown {
@@ -54,6 +56,7 @@
 }
 
 .intro {
-    width: 60%;
-    padding: 2rem;
+    margin: auto;
+    padding: 1rem;
+    font-family: 'Miniver', cursive;
 }

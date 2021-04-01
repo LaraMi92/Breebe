@@ -21,7 +21,7 @@ const User = ({pseudo, logOut}) => {
      <p> Cela vous permettra de retrouver vos Breebes plus aisément.</p>
     <p className="bolder"> Vous voulez savoir quels sont les mots que vous utilisez le plus fréquemment ? </p>
       <p>Le Brumulus est là pour ça. </p><p>N'hésitez pas à le sauvegarder.</p>
-    <p className="bolder"> Vous manquez d'inspiration ?</p><p> Le Brouvoir sélectionnera une de vos breebes pour la refaçonner.</p>
+    <p className="bolder"> Vous manquez d'inspiration ?</p><p> L'Abreeboir sélectionnera une de vos breebes pour la refaçonner.</p>
     </div>
     </div>
     :  
