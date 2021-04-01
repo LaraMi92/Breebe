@@ -1,12 +1,12 @@
 @import 'src/styles/vars';
-@import url('https://fonts.googleapis.com/css2?family=Beth+Ellen&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ramaraja&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
 
 .user{
     &--name{
-    font-family: 'Beth Ellen', cursive;
+    font-family: 'Montserrat Alternates', sans-serif;
     font-size: .8em;
+    font-weight: 700;
     position: absolute;
     top: 0;
     left: 0%;
@@ -17,8 +17,9 @@
     cursor: pointer;
     }
     &--logout{
-        font-family: 'Beth Ellen', cursive;
+        font-family: 'Montserrat Alternates', sans-serif;
         font-size: .7em;
+        font-weight: 700;
         position: absolute;
         top: 0;
         right: 0%;
@@ -32,7 +33,7 @@
         }
     &--intro {
         width: auto;
-        font-family: 'Beth Ellen', cursive;
+        font-family: 'Montserrat Alternates', sans-serif;
         line-height: $medium-gutter;
         padding: $basic-gutter;
         border-radius: 29px;
@@ -43,4 +44,9 @@
 
 .bolder {
     font-weight: 700;
+}
+
+.modal-main--back{
+    width: 20%;
+    cursor: pointer;
 }

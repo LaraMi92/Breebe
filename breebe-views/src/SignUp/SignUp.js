@@ -8,7 +8,7 @@ import './SignUp.scss';
 import proxy from '../util/proxy';
 import Input from '../Input/Input';
 import Title from '../Title/Title';
-import intro from '../assets/intro.svg';
+import Loader from '../assets/Loader.svg';
 import EmptyWarning from '../EmptyWarning/EmptyWarning';
 
 const SignUp = () => {
@@ -21,14 +21,17 @@ const SignUp = () => {
     const history = useHistory();
 
     const handleEmail = (event) => {
+        setEmpty(false);
        setEmail(event.target.value)
     }
 
     const handlePassword = (event) => {
+        setEmpty(false);
         setPassword(event.target.value)
      }
     
     const handlePseudo = (event) => {
+        setEmpty(false);
         setPseudo(event.target.value)
     }
 
@@ -52,6 +55,7 @@ const SignUp = () => {
                })
      }
      const refuseSubmit = () => {
+         setLoader(false);
         setEmpty(true);
     }
   return (
@@ -112,7 +116,9 @@ const SignUp = () => {
         value={password}
         />
      {empty && <EmptyWarning />}
-    <button type="submit"onClick={email === '' || password === '' || pseudo === '' ? refuseSubmit :handleSubmit} className="submit">S'enregistrer</button>
+     {loader && <div className="display"><img src={Loader} className="display--loader" alt="loader" /></div>}
+     {!email.includes('@') || password.length < 3 || pseudo.length < 3 ? (<button type="button"className="submit" onClick={refuseSubmit}>S'enregistrer </button>) : 
+    (<button type="submit"className="submit" onClick={handleSubmit}>S'enregistrer </button>)}
     <div className="link"><a href="/login">J'ai un compte Breebe</a></div>
     </form>
     </div>

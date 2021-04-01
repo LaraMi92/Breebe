@@ -9,6 +9,7 @@ import proxy from '../util/proxy';
 import Title from '../Title/Title';
 import Input from '../Input/Input';
 import EmptyWarning from '../EmptyWarning/EmptyWarning';
+import Loader from '../assets/Loader.svg';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -20,14 +21,17 @@ const Login = () => {
     const history = useHistory();
 
     const handleEmail = (event) => {
+        setEmpty(false);
        setEmail(event.target.value)
     }
 
     const handlePassword = (event) => {
+        setEmpty(false);
         setPassword(event.target.value)
      }
 
      const handleSubmit = (event) => {
+         setLoader(true);
          event.preventDefault();
          setLoader(true);
          const userData = {
@@ -44,6 +48,7 @@ const Login = () => {
                    setErrors(error);
                    setLoader(false);
                })
+               .finally(() => setLoader(false))
      }
 
      const refuseSubmit = () => {
@@ -102,7 +107,9 @@ const Login = () => {
         value={password}
         />
     {empty && <EmptyWarning />}
-    <button type="submit"className="submit" onClick={email === '' || password === '' ? refuseSubmit : handleSubmit}>Se connecter</button>
+    {loader && <div className="display"><img src={Loader} className="display--loader" alt="loader" /></div>}
+    {!email.includes('@') || password.length < 3 ? (<button type="button"className="submit" onClick={refuseSubmit}>Se connecter </button>) : 
+    (<button type="submit"className="submit" onClick={handleSubmit}>Se connecter </button>)}
     <div className="link"><a href="/signup">Je n'ai pas de compte Breebe</a></div>
     </form>
     </div>

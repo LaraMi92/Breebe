@@ -1,4 +1,13 @@
-.breebe-cloud {
-    width: 100%;
-    margin: auto;
+@import 'src/styles/vars.scss';
+
+.cloud--buttons {
+display: flex;
+flex-flow: row wrap;
+align-content: baseline;
+justify-content: center;
+}
+.go-back {
+    width: 10%;
+    background-color: $default-color;
+    padding: 0;
 }

@@ -220,14 +220,14 @@ const Home = () => {
    
 
    const closeWordCloud = (e) => {
-    if(e.target.className ==='modal') {
+    if(e.target.className ==='modal' || e.target.className === 'get-breebes go-back') {
         e.stopPropagation();
        showWords(false);
     }
    }
 
    const closeBrouvoir = (e) => {
-    if(e.target.className ==='modal') {
+    if(e.target.className ==='modal' || e.target.className === 'modal-main--go-back') {
         e.stopPropagation();
         showBrouvoir(false);
     }
@@ -255,10 +255,10 @@ const Home = () => {
         }}>Abreeboir</button>   
         </div> 
             } 
-        {brouvoir && <div className="modal" onClick={(event) => closeBrouvoir(event)}><Brouvoir breebe={brouve[0]} word={brouve[1]}/></div>}
+        {brouvoir && <div className="modal" onClick={(event) => closeBrouvoir(event)}><Brouvoir breebe={brouve[0]} word={brouve[1]} closeBrouve={closeBrouvoir}/></div>}
         {words && <div className="modal" onClick={(event) => closeWordCloud(event)}>
             <div className="cloud">
-                <SimpleCloud words={cloud[0]} />
+                <SimpleCloud words={cloud[0]} closeCloud={closeWordCloud}/>
             </div>
             </div>}
 
@@ -270,7 +270,7 @@ const Home = () => {
         <textPath startOffset="0" xlinkHref="#txt-path">L'interminable est la spécialité des indécis</textPath>
         </text>
     </svg>
-    {loader === true ? <div className="display"><img src={Loader} className="display--loader" alt="loader" /></div> : <div className="display--none"></div>}
+    {loader && <div className="display"><img src={Loader} className="display--loader" alt="loader" /></div>}
     <form className="breebe-form">
       <Input
       type="text"
@@ -324,7 +324,7 @@ const Home = () => {
                     onChange={handleEdit}
                     />
                     </label>
-                    <label className="modal--title"><h3 className="modal--label">Tag : </h3>{singleBreebe.tag}
+                    <label className="modal--title"><h3 className="modal--label">Thème : </h3>{singleBreebe.tag}
                     <input
                      className="single-breebe--tag-edit"
                      value={tagBreebe}

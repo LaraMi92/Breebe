@@ -2,6 +2,7 @@
 @use 'src/styles/reset.scss';
 @import url('https://fonts.googleapis.com/css2?family=Ramaraja&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
 
 /*ALL*/
 *{
@@ -62,7 +63,7 @@
     width: 250px;
     min-height: 250px;
     display: flex;
-    font-family: 'Beth Ellen', cursive;
+    font-family: 'Montserrat Alternates', sans-serif;
     box-sizing: content-box;
     justify-content: center;
     align-content: center;
@@ -137,13 +138,14 @@
     background: rgba(0, 0, 0, 0.6);
     &--label {
         color: $dark-default;
-        font-style: italic;
-        font-size: 1.4rem;
+        font-weight: bold;
+        font-size: 1.2rem;
     }
     &--title {
+        padding: $basic-gutter;
         margin: $mini-gutter;
         font-size: $basic-gutter;
-        font-family: 'Ramaraja', serif;
+        font-family: 'Montserrat Alternates', sans-serif;
     }
 }
 
@@ -154,6 +156,8 @@
     justify-content: center;
     border-radius: 29px;
     background: linear-gradient(90deg, #A4CDBD -35.29%, #D79A9A 100%);
+    box-shadow: inset 8px 8px 60px #9b848d,
+                inset -8px -8px 60px #ffffff;
     position:fixed;
     min-width: 250px;
     min-height: 250px;
