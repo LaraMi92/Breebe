@@ -117,8 +117,8 @@ const SignUp = () => {
         />
      {empty && <EmptyWarning />}
      {loader && <div className="display"><img src={Loader} className="display--loader" alt="loader" /></div>}
-     {!email.includes('@') || password.length < 3 || pseudo.length < 3 ? (<button type="button"className="submit" onClick={refuseSubmit}>S'enregistrer </button>) : 
-    (<button type="submit"className="submit" onClick={handleSubmit}>S'enregistrer </button>)}
+     {!email.includes('@') || password.length < 3 || pseudo.length < 3 ? (<button type="button"className="submit--sign" onClick={refuseSubmit}>S'enregistrer </button>) : 
+    (<button type="submit"className="submit--sign" onClick={handleSubmit}>S'enregistrer </button>)}
     <div className="link"><a href="/login">J'ai un compte Breebe</a></div>
     </form>
     </div>

@@ -10,7 +10,7 @@
     position: absolute;
     top: 0;
     left: 0%;
-    background-color:$deep-pink;
+    background-color:rgba(226, 167, 188, 0.53);
     border-radius: 30px;
     padding: $basic-gutter;
     margin: $basic-gutter;
@@ -25,7 +25,7 @@
         right: 0%;
         border-radius: 30px;
         padding: $basic-gutter;
-        background-color: $deep-green;
+        background-color: $fluo-green;
         margin: $basic-gutter;
         border: none;
         width: auto;
@@ -37,7 +37,6 @@
         line-height: $medium-gutter;
         padding: $basic-gutter;
         border-radius: 29px;
-        background: linear-gradient(90deg, #A4CDBD -35.29%, #D79A9A 100%);
     }
     
 }

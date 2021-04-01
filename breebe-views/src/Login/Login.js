@@ -108,8 +108,8 @@ const Login = () => {
         />
     {empty && <EmptyWarning />}
     {loader && <div className="display"><img src={Loader} className="display--loader" alt="loader" /></div>}
-    {!email.includes('@') || password.length < 3 ? (<button type="button"className="submit" onClick={refuseSubmit}>Se connecter </button>) : 
-    (<button type="submit"className="submit" onClick={handleSubmit}>Se connecter </button>)}
+    {!email.includes('@') || password.length < 3 ? (<button type="button"className="submit--sign" onClick={refuseSubmit}>Se connecter </button>) : 
+    (<button type="submit"className="submit--sign" onClick={handleSubmit}>Se connecter </button>)}
     <div className="link"><a href="/signup">Je n'ai pas de compte Breebe</a></div>
     </form>
     </div>

@@ -20,8 +20,9 @@
        width:90%;
    }
     &--submit {
-        background: linear-gradient(90deg, #A4CDBD -35.29%, #D79A9A 100%);
-        border: 1px solid #CFB0BB;
+        background: rgb(185,117,149);
+        background: linear-gradient(90deg, rgba(185,117,149,1) 0%, rgba(185,220,201,1) 100%);
+        border: none;
         box-sizing: content-box;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 30px;
@@ -30,6 +31,7 @@
         padding-top: 0;
         margin-bottom: .5rem;
         width: auto;
+        font-size: 1em;
     }
 }
 
@@ -44,6 +46,7 @@
     padding: $basic-gutter;
     background-color: $deep-pink;
     border: none;
+    margin: $mini-gutter;
 }
 
 .breebes {
@@ -55,6 +58,7 @@
     padding: $mini-gutter;
 }
 
+/**SINGLE BREEBE */
 .single-breebe {
     border-radius: 29px;
     background:$background-color;
@@ -120,14 +124,15 @@
 
 }
 
-
-
 .svg-text-sub {
     width: 40%;
     display: block;
     margin: auto;
     transition: all .2s ease-in-out;  
 }
+
+
+/*MODAL */
 
 .modal {
     position: fixed;
@@ -139,13 +144,13 @@
     &--label {
         color: $dark-default;
         font-weight: bold;
-        font-size: 1.2rem;
+        font-family: 'Montserrat Alternates', sans-serif;
     }
     &--title {
         padding: $basic-gutter;
         margin: $mini-gutter;
         font-size: $basic-gutter;
-        font-family: 'Montserrat Alternates', sans-serif;
+        font-family: 'Ramaraja', serif;
     }
 }
 
@@ -157,7 +162,9 @@
     align-content: center;
     justify-content: center;
     border-radius: 29px;
-    background: linear-gradient(90deg, #A4CDBD -35.29%, #D79A9A 100%);
+   /*  background: linear-gradient(90deg, #A4CDBD -35.29%, #D79A9A 100%); */
+   background: rgb(185,117,149);
+background: linear-gradient(90deg, rgba(185,117,149,1) 0%, rgba(185,220,201,1) 100%);
     box-shadow: inset 8px 8px 60px #9b848d,
                 inset -8px -8px 60px #ffffff;
     position:fixed;

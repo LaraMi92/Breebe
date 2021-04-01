@@ -2,10 +2,10 @@
 @import 'src/styles/reset.scss';
 @import url('https://fonts.googleapis.com/css2?family=Ramaraja&display=swap');
 
-.submit {
+.submit--sign {
     font-family: 'Ramaraja', serif;
     font-size: 1rem;
-    background-color: $deep-pink;
+    background-color: $fluo-green-opaque;
     border: none;
     border-radius: 30px;
     padding: $basic-gutter;

@@ -36,7 +36,6 @@ const Home = () => {
    const [tagBreebe, setTag] = useState('');
    const [editMode, setEditMode] = useState(false);
    const [editedBreebe, setEditedBreebe] = useState('');
-   const [breebesTagFiltered, setBreebesTagFiltered] = useState([]);
    const [singleBreebe, setSingleBreebe] = useState({});
    const [empty, setEmpty] = useState(false);
    const [cloud, setCloud] = useState([]);
@@ -111,7 +110,7 @@ const Home = () => {
         const authToken = localStorage.getItem('AuthToken');
         axios.defaults.headers.common = {Authorization: `${authToken}`};
         axios(options)
-            /* .then(()=> window.location.reload()) */
+            
             .then(() => getBreebes())
             .catch((error) => setErrors(error))
             .finally(() => {
@@ -120,6 +119,7 @@ const Home = () => {
    }
 
    const handleEdit = (event) => {
+        setEmpty(false);
         setEditedBreebe(event.target.value);
    }
 
@@ -128,6 +128,7 @@ const Home = () => {
    }
 
    const handleTag = (event) => {
+       setEmpty(false);
        setTag(event.target.value);
    }
 
@@ -137,12 +138,22 @@ const Home = () => {
    }
 
    const submitEdit = (event) => {
-        authMw(history);
         event.preventDefault();
-        const edited = {
-            body: editedBreebe,
-            tag: tagBreebe
-        };
+        setLoader(true);
+        authMw(history);
+        let edited;
+        if(tagBreebe.length !== 0){
+            edited = {
+                body: editedBreebe,
+                tag: tagBreebe
+            };
+            return;
+        } else {
+            edited = {
+                body: editedBreebe
+            }
+        }
+         
         const options = {
             url: `${proxy}/breebe/${breebeId}`,
             method: 'put',
@@ -151,23 +162,31 @@ const Home = () => {
         const authToken = localStorage.getItem('AuthToken');
         axios.defaults.headers.common = { Authorization: `${authToken}`};
         axios(options)
-             .then(() => window.location.reload())
+             .then(() => {
+                 getBreebes();
+                setEditMode(false);
+                setTag('');
+                setEditedBreebe('')})
              .catch((error) => setErrors(error))
+             .finally(() => setLoader(false) )
        
    }
 
-   const deleteBreebe = (breebe) => {
+   const deleteBreebe = (event, breebe) => {
+       event.preventDefault();
+       setLoader(true);
        authMw(history);
        const authToken = localStorage.getItem('AuthToken');
        axios.defaults.headers.common = {Authorization: `${authToken}`};
        let id = breebe.breebeId;
        axios.delete(`${proxy}/breebe/${id}`)
             .then(() => {
-                window.location.reload();
+                getBreebes();
             })
             .catch((error) => {
                 setErrors(error)
             })
+            .finally(() => setLoader(false))
    }
 
    const closeModal = (e) => {
@@ -206,16 +225,8 @@ const Home = () => {
     const toEndWith = endings[Math.floor(Math.random() * (endings.length - 1) + 1)];
     const allBodies = breebes.map(breebe => breebe.body);
     const body = allBodies[Math.floor(Math.random() * (allBodies.length - 1) + 1)]
-    /* const array = body.toString().split(' ');
-    const letters = array.map(item => item.split(''));
-    const first = letters.map(item => item.shift());
-  
-    for(let i=0; i < letters.length; i++){
-        letters[i].push(first[i]);
-    }
-    const result = letters.map(item => (item += `${toEndWith}`).replace(/,+/g, '')).join(' '); */
     
-   setBrouve([body, toEndWith]);
+    setBrouve([body, toEndWith]);
     }
    
 
@@ -239,9 +250,10 @@ const Home = () => {
       <Title />
         <User pseudo={pseudo} logOut={logOut} />
         
+        <div className="all-buttons">
         <button type="button"className="get-breebes" onClick={getBreebes}>Mes breebes</button>
         {breebes.length !== 0 && 
-        <div className="buttons">
+        <>
         <button type="button"className="get-breebes" onClick={() => {
             setLoader(true);
             prepareStats();
@@ -253,8 +265,9 @@ const Home = () => {
             setLoader(false);
             showBrouvoir(true)
         }}>Abreeboir</button>   
-        </div> 
+       </>
             } 
+        </div>
         {brouvoir && <div className="modal" onClick={(event) => closeBrouvoir(event)}><Brouvoir breebe={brouve[0]} word={brouve[1]} closeBrouve={closeBrouvoir}/></div>}
         {words && <div className="modal" onClick={(event) => closeWordCloud(event)}>
             <div className="cloud">
@@ -306,7 +319,7 @@ const Home = () => {
                      <img src={breebescribble} 
                      className="single-breebe--delete"
                      alt="delete breebe"
-                     onClick={() => deleteBreebe(breebe)}
+                     onClick={(event) => deleteBreebe(event, breebe)}
                      />
                      </div>
                     </div>
