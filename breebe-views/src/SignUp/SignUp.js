@@ -115,7 +115,7 @@ const SignUp = () => {
         placeholder="Mot de passe"
         value={password}
         />
-     {empty && <EmptyWarning />}
+     {empty && (<div className="empty">Veuillez remplir tous les champs avec des identifiants valides !</div>)}
      {loader && <div className="display"><img src={Loader} className="display--loader" alt="loader" /></div>}
      {!email.includes('@') || password.length < 3 || pseudo.length < 3 ? (<button type="button"className="submit--sign" onClick={refuseSubmit}>S'enregistrer </button>) : 
     (<button type="submit"className="submit--sign" onClick={handleSubmit}>S'enregistrer </button>)}
