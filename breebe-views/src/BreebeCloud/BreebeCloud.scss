@@ -5,6 +5,8 @@ display: flex;
 flex-flow: row wrap;
 align-content: baseline;
 justify-content: center;
+position: absolute;
+bottom: 5rem;
 }
 .go-back {
     width: 10%;
