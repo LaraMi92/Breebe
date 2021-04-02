@@ -14,7 +14,7 @@ import Loader from '../assets/Loader.svg';
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState('');
     const [loader, setLoader] = useState(false);
     const [empty, setEmpty] = useState(false);
 
@@ -45,7 +45,7 @@ const Login = () => {
                    history.push('/');
                })
                .catch((error) => {
-                   setErrors(error);
+                   setErrors(error.data);
                    setLoader(false);
                })
                .finally(() => setLoader(false))
@@ -106,7 +106,8 @@ const Login = () => {
         onChange={handlePassword}
         value={password}
         />
-    {empty && <EmptyWarning />}
+    {errors.length !== 0 && (<div className="empty">Il semble y avoir une erreur venant de nous ! Vous voulez retenter ?{errors}</div>) }
+    {empty && (<div className="empty">Vos identifiants ne semblent pas corrects !</div>)}
     {loader && <div className="display"><img src={Loader} className="display--loader" alt="loader" /></div>}
     {!email.includes('@') || password.length < 3 ? (<button type="button"className="submit--sign" onClick={refuseSubmit}>Se connecter </button>) : 
     (<button type="submit"className="submit--sign" onClick={handleSubmit}>Se connecter </button>)}

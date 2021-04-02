@@ -15,22 +15,25 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [pseudo, setPseudo] = useState('');
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState('');
     const [loader, setLoader] = useState(false);
     const [empty, setEmpty] = useState(false);
     const history = useHistory();
 
     const handleEmail = (event) => {
+        setErrors('');
         setEmpty(false);
        setEmail(event.target.value)
     }
 
     const handlePassword = (event) => {
+        setErrors('');
         setEmpty(false);
         setPassword(event.target.value)
      }
     
     const handlePseudo = (event) => {
+        setErrors('');
         setEmpty(false);
         setPseudo(event.target.value)
     }
@@ -56,8 +59,7 @@ const SignUp = () => {
                    history.push('/');
                })
                .catch((error) => {
-                   console.log(error)
-                   setErrors(error);
+                   setErrors(error.response.data);
                    setLoader(false);
                })
      }
@@ -125,7 +127,7 @@ const SignUp = () => {
         placeholder="Mot de passe *"
         value={password}
         />
-    {errors.length !== 0 && (<div className="empty">Il semble y avoir une erreur venant de nous ! Vous voulez retenter ?</div>) }
+    {errors.length !== 0 && (<div className="empty">Il semble y avoir une erreur venant de nous ! Vous voulez retenter ?{errors}</div>) }
      {empty && (<div className="empty">Veuillez remplir tous les champs avec des identifiants valides et un mot de passe de plus de 6 caracteres dont 1 chiffre !</div>)}
      {loader && <div className="display"><img src={Loader} className="display--loader" alt="loader" /></div>}
      {!email.includes('@') || password.length < 3 || pseudo.length < 3 ? (<button type="button"className="submit--sign" onClick={refuseSubmit}>S'enregistrer </button>) : 
