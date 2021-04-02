@@ -56,8 +56,9 @@
     background: #d9abba;
     box-shadow: inset 20px 20px 60px #b8919e,
             inset -20px -20px 60px #fac5d6;
-            border-radius: 29px;
-            max-height: 100vh;
-            overflow-y: auto;
-    margin: $medium-gutter;
+    border-radius: 29px;
+    max-height: 100vh;
+    max-width: 300px;
+    overflow-y: auto;
+    margin: auto;
 }
