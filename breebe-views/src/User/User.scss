@@ -20,23 +20,25 @@
         font-family: 'Montserrat Alternates', sans-serif;
         font-size: .7em;
         font-weight: 700;
-        position: absolute;
-        top: 0;
-        right: 0%;
         border-radius: 30px;
+        width: auto;
         padding: $basic-gutter;
         background-color: $fluo-green;
-        margin: $basic-gutter;
+        margin: auto;
         border: none;
-        width: auto;
+        box-sizing: content-box;
         cursor: pointer;
         }
     &--intro {
-        width: auto;
         font-family: 'Montserrat Alternates', sans-serif;
         line-height: $medium-gutter;
-        padding: $basic-gutter;
-        border-radius: 29px;
+        padding: $mini-gutter;
+        &--btns{
+            display:flex;
+            flex-flow: row wrap;
+            align-items: baseline;
+            justify-content: space-around;
+        }
     }
     
 }
@@ -46,6 +48,16 @@
 }
 
 .modal-main--back{
-    width: 20%;
+    width: 25%;
     cursor: pointer;
+}
+
+.modal-user{
+    background: #d9abba;
+    box-shadow: inset 20px 20px 60px #b8919e,
+            inset -20px -20px 60px #fac5d6;
+            border-radius: 29px;
+            max-height: 100vh;
+            overflow-y: auto;
+    margin: $medium-gutter;
 }

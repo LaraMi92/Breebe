@@ -15,7 +15,7 @@ const SimpleWordcloud = ({words, closeCloud}) => {
           saveSvgAsPng(svg, 'brumulus.png');
      }
      const options = {
-          colors: ["#ACC5A6", "#778899", "#E2A9BD"],
+          colors: ["#ACC5A6", "#778899", "#000000"],
           enableTooltip: false,
           deterministic: false,
           fontFamily: "impact",

@@ -140,10 +140,9 @@
     left: 0;
     width:100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    /* background: rgba(0, 0, 0, 0.6); */
+    background:rgba(242, 207, 220, 0.9);
     &--label {
-        color: $dark-default;
-        font-weight: bold;
         font-family: 'Montserrat Alternates', sans-serif;
     }
     &--title {
@@ -159,19 +158,24 @@
     min-height: 250px;
     display: flex;
     flex-flow: column wrap;
+    overflow-y: initial !important;
     align-content: center;
     justify-content: center;
     border-radius: 29px;
-   /*  background: linear-gradient(90deg, #A4CDBD -35.29%, #D79A9A 100%); */
-   background: rgb(185,117,149);
+    background: #d9abba;
+    box-shadow: inset 20px 20px 60px #b8919e,
+            inset -20px -20px 60px #fac5d6;
+  /*  background: rgb(185,117,149);
 background: linear-gradient(90deg, rgba(185,117,149,1) 0%, rgba(185,220,201,1) 100%);
     box-shadow: inset 8px 8px 60px #9b848d,
-                inset -8px -8px 60px #ffffff;
+                inset -8px -8px 60px #ffffff; */
     position:fixed;
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
 }
+
+/*LOADER*/
 
 .loader{
     position: absolute;
@@ -198,18 +202,38 @@ background: linear-gradient(90deg, rgba(185,117,149,1) 0%, rgba(185,220,201,1) 1
         margin: auto;
         animation: rotation 5s infinite linear;
     }
-    &--none{
-        display: none;
-    }
 }
+
+
+/*BRUMULUS*/
 
 .cloud {
     width: 80%;
     height: 90%;
     margin: auto;
+    &--buttons{
+        height: 10%;
+    }
 }
+
+
 
 .error {
     
     padding-bottom: $mini-gutter;
 }
+
+/*MEDIA QUERIES*/
+
+@media screen  and (max-device-width: 480px) and (orientation: portrait) { 
+   .display--loader{
+       width: 25%;
+   }
+   .svg-text-sub{
+       width: 60%;
+   }
+  }
+  
+  @media screen  and (max-device-width: 640px) and (orientation: landscape)  {
+    
+  }

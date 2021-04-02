@@ -60,3 +60,12 @@
     padding: 1rem;
     font-family: 'Miniver', cursive;
 }
+
+@media screen  and (max-device-width: 480px) and (orientation: portrait) { 
+    .svg-text{
+        width: 100%;
+        max-height: 20%;
+        margin-top: 3rem;
+    }
+    
+   }
