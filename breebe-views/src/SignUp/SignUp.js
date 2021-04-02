@@ -38,18 +38,25 @@ const SignUp = () => {
      const handleSubmit = (event) => {
          event.preventDefault();
          setLoader(true);
-         const userData = {
-             email: email,
-             password: password,
-             pseudo: pseudo
+         const body = {
+            email: email,
+            password: password,
+            pseudo: pseudo
          };
-         axios.post(`${proxy}/signup`, userData)
+         
+         const options = {
+            contentType: "application/json",
+            data: body
+        }
+       
+         axios.post(`${proxy}/signup`, body)
                .then((response) => {
                    localStorage.setItem('AuthToken', `Bearer ${response.data.token}`);
                    setLoader(false);
                    history.push('/');
                })
                .catch((error) => {
+                   console.log(error)
                    setErrors(error);
                    setLoader(false);
                })
@@ -98,24 +105,28 @@ const SignUp = () => {
        <div className="intro">Pour écrire, synthétiser, expérimenter, recommencer, rater mieux.</div>
     <form onSubmit={handleSubmit}>
         <Input
+        title="email"
         type="email"
         onChange={handleEmail}
-        placeholder="Email"
+        placeholder="Email *"
         value={email}
         />
         <Input
+        title="pseudo"
         type="text"
         onChange={handlePseudo}
-        placeholder="Pseudo"
+        placeholder="Pseudo *"
         value={pseudo}
         />
         <Input
+        title="mot de passe"
         type="password"
         onChange={handlePassword}
-        placeholder="Mot de passe"
+        placeholder="Mot de passe *"
         value={password}
         />
-     {empty && (<div className="empty">Veuillez remplir tous les champs avec des identifiants valides !</div>)}
+    {errors.length !== 0 && (<div className="empty">Il semble y avoir une erreur venant de nous ! Vous voulez retenter ?</div>) }
+     {empty && (<div className="empty">Veuillez remplir tous les champs avec des identifiants valides et un mot de passe de plus de 6 caracteres dont 1 chiffre !</div>)}
      {loader && <div className="display"><img src={Loader} className="display--loader" alt="loader" /></div>}
      {!email.includes('@') || password.length < 3 || pseudo.length < 3 ? (<button type="button"className="submit--sign" onClick={refuseSubmit}>S'enregistrer </button>) : 
     (<button type="submit"className="submit--sign" onClick={handleSubmit}>S'enregistrer </button>)}

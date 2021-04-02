@@ -1,4 +1,4 @@
-const isEmpty = (string) => {
+const isEmpty = (string = '') => {
     if(string.trim() === ''){
         return true;
     }
