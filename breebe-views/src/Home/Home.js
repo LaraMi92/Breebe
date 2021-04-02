@@ -137,20 +137,25 @@ const Home = () => {
         setBreebes(filteredTag);
    }
 
-   const submitEdit = (event) => {
+   const submitEdit = (event, singleBreebe) => {
         event.preventDefault();
         setLoader(true);
         authMw(history);
         let edited;
-        if(tagBreebe.length !== 0){
+        if(tagBreebe.length !== 0 && editedBreebe.length !== 0){
             edited = {
                 body: editedBreebe,
                 tag: tagBreebe
             };
-            return;
-        } else {
+        } else if(editedBreebe.length === 0){
             edited = {
-                body: editedBreebe
+                tag: tagBreebe,
+                body: singleBreebe.body
+            };
+        } else if(tagBreebe.length === 0){
+            edited = {
+                body: editedBreebe,
+                tag: singleBreebe.tag
             }
         }
          
@@ -348,7 +353,13 @@ const Home = () => {
                     <img src={breebepen} 
                     className="single-breebe--edit-pen"
                     alt="edit breebe"
-                    onClick={editedBreebe === '' ? refuseEdit : submitEdit}
+                    onClick={(event) => {
+                        if(editedBreebe === '' && tagBreebe === ''){
+                            refuseEdit()
+                        } else{
+                            submitEdit(event, singleBreebe)
+                        } 
+                    }}
                     />
                       <img src={breebeback}
                     className="single-breebe--back" 

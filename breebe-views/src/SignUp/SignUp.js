@@ -105,7 +105,7 @@ const SignUp = () => {
     </div>
         <Title />
        <div className="intro">Pour écrire, synthétiser, expérimenter, recommencer, rater mieux.</div>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} autoComplete="on">
         <Input
         title="email"
         type="email"
