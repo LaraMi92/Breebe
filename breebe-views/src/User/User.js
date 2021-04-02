@@ -29,7 +29,7 @@ const User = ({pseudo, logOut}) => {
     </div>
     </div>
     :
-    <div className="user--name">{pseudo}</div>}
+    <div className="user--name">Mon compte</div>}
     </div>
    
     </div>

@@ -335,14 +335,14 @@ const Home = () => {
                         closeModal(event);
                         }}>
                     <form className="modal-main">
-                    <label className="modal--title"><h3 className="modal--label"> Breebe : </h3> {empty ? <EmptyWarning /> : singleBreebe.body}
+                    <label className="modal--title"><h3 className="modal--label"> Modifier ma Breebe : </h3> {empty ? <EmptyWarning /> : singleBreebe.body}
                     <input
                     className="single-breebe--input"
                     value={editedBreebe}
                     onChange={handleEdit}
                     />
                     </label>
-                    <label className="modal--title"><h3 className="modal--label">Thème : </h3>{singleBreebe.tag}
+                    <label className="modal--title"><h3 className="modal--label">Modifier le thème : </h3>{singleBreebe.tag}
                     <input
                      className="single-breebe--tag-edit"
                      value={tagBreebe}
