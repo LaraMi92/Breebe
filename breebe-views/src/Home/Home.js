@@ -291,7 +291,7 @@ const Home = () => {
     </svg>
     {loader && <div className="display"><img src={Loader} className="display--loader" alt="loader" /></div>}
     <form className="breebe-form">
-      <Input
+      <textarea
       type="text"
       placeholder="une nouvelle breebe...|"
       onChange={setNewBreebe}
@@ -299,7 +299,7 @@ const Home = () => {
       className="breebe-form--input"
       />
         <div className="error">{error !== "" && <EmptyWarning />}</div>
-      <button type="submit" onClick={handleSubmitNew} className="breebe-form--submit">soumettre</button>
+      <button type="button" onClick={handleSubmitNew} className="breebe-form--submit">soumettre</button>
     </form>
    
     {breebes.length !== 0 && (

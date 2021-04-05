@@ -15,13 +15,15 @@
 .breebe-form {
     margin: auto;
     &--input {
-        width:70vw;
-        display: block;
-        margin: auto;
-        padding: $mini-gutter;
-        background-color: $default-color;
+        height: 10vh;
+        font-family: 'Montserrat Alternates', sans-serif;
+        border-radius: 25px;
+        background-color: #E9DBDB;
+        box-shadow: inset  4px 4px 4px rgba(0, 0, 0, 0.25);
+        border: none;
+        padding: $basic-gutter;
+        margin: 1rem;
         text-align: left;
-        box-sizing: content-box;
 }
     &--submit {
         background: rgb(185,117,149);
