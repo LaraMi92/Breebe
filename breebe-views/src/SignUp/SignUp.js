@@ -127,7 +127,8 @@ const SignUp = () => {
         placeholder="Mot de passe *"
         value={password}
         />
-    {errors.length !== 0 && (<div className="empty">Il semble y avoir une erreur venant de nous ! Vous voulez retenter ?{errors}</div>) }
+    {console.log(errors)}
+    {errors.length !== 0 && (<div className="empty">Il semble y avoir une erreur ... {Object.values(errors)}</div>) }
      {empty && (<div className="empty">Veuillez remplir tous les champs avec des identifiants valides et un mot de passe de plus de 6 caracteres dont 1 chiffre !</div>)}
      {loader && <div className="display"><img src={Loader} className="display--loader" alt="loader" /></div>}
      {!email.includes('@') || password.length < 3 || pseudo.length < 3 ? (<button type="button"className="submit--sign" onClick={refuseSubmit}>S'enregistrer </button>) : 
