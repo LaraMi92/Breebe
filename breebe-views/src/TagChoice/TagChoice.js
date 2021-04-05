@@ -12,13 +12,18 @@ const Tags = ({breebes, appendTag}) => {
     }
     removeDoubles(tags, item => item.tag);
 
-    const setClassName = (event) => {
+    const setClassName = (event, breebe) => {
       event.target.classList.toggle('--darker');
+        if(event.target.className === "tags--tag --darker"){
+         appendTag(breebe)
+      } else {
+        appendTag('');
+      }
     }
+
    return( <div className="tags">
       {tagsNotDuplicated.map(breebe => (<div className="tags--tag" key={breebe.breebeId} onClick={(event) => {
-          appendTag(breebe.tag)
-          setClassName(event)}}>
+          setClassName(event, breebe.tag)}}>
         {breebe.tag}</div>))}
     
     </div>)

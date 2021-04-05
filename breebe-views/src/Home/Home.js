@@ -376,6 +376,7 @@ const Home = () => {
                     className="single-breebe--back" 
                     onClick={() => {
                         setEmpty(false);
+                        setTag('');
                         setEditMode(false)}} 
                     alt="go back"
                     />
