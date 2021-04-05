@@ -5,11 +5,10 @@ import breebeback from '../assets/breebeback.svg';
 
 const User = ({pseudo, logOut}) => {
   const history = useHistory();
-  const [modal, setModal] = useState(false);
   const closeModal = (e) => {
     if(e.target.className ==='modal' || e.target.className === 'modal-main--back') {
         e.stopPropagation();
-        setModal(false);
+        
         history.push('/')
     }
 }
