@@ -34,7 +34,8 @@
         border-radius: 30px;
         padding-left: $basic-gutter;
         padding-right: $basic-gutter;
-        padding-top: 0;
+        padding-top: $mini-gutter;
+        padding-bottom: $mini-gutter;
         margin-bottom: .5rem;
         width: auto;
         font-weight: 500;

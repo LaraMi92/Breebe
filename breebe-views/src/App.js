@@ -9,6 +9,7 @@ import SignUp from './SignUp/SignUp';
 import Home from './Home/Home';
 import SimpleCloud from './BreebeCloud/reactwordcloud';
 import NotFound from './NotFound/NotFound';
+import User from './User/User';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
        <Route exact path="/login" component={Login} />
        <Route exact path="/signup" component={SignUp} />
        <Route exact path="/" component={Home} />
+       <Route exact path="/user" component={User} />
        <Route component={NotFound} />
      </Switch>
     </div>

@@ -1,19 +1,21 @@
 import './User.scss';
 import {useState} from 'react';
+import { useHistory } from 'react-router-dom';
 import breebeback from '../assets/breebeback.svg';
 
 const User = ({pseudo, logOut}) => {
+  const history = useHistory();
   const [modal, setModal] = useState(false);
   const closeModal = (e) => {
     if(e.target.className ==='modal' || e.target.className === 'modal-main--back') {
         e.stopPropagation();
-        setModal(false)
+        setModal(false);
+        history.push('/')
     }
 }
   return(
   <div>
-    <div className="user" onClick={() => setModal(true)}>
-    {modal ? <div className="modal" onClick={closeModal}>
+    <div className="modal" onClick={closeModal}>
     <div className="modal-user user--intro">
     Bonjour {pseudo},
     <p>Bienvenue dans votre espace Breebe. </p>
@@ -23,16 +25,14 @@ const User = ({pseudo, logOut}) => {
       <p>Le Brumulus est là pour ça. </p><p>N'hésitez pas à le sauvegarder.</p>
     <p className="bolder"> Vous manquez d'inspiration ?</p><p> L'Abreeboir sélectionnera une de vos breebes pour la refaçonner.</p>
     <div className="user--intro--btns">
-    <img src={breebeback} className='modal-main--back' alt="go back" onClick={closeModal}/>
+    <img src={breebeback} className='modal-main--back' alt="go back" onClick={closeModal} />
         <button className="user--logout" type="button" onClick={logOut}>déconnexion</button>
     </div>
     </div>
     </div>
-    :
-    <div className="user--name">Mon compte</div>}
+    
     </div>
-   
-    </div>
+  
   )
 }
 
