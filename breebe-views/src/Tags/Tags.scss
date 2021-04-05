@@ -18,7 +18,10 @@
         padding: $mini-gutter;
         margin-right: $mini-gutter;
         box-sizing: content-box;
-    
     }
+
 }
 
+.--darker {
+    background-color: $default-color;
+}

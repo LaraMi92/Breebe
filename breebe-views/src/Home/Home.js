@@ -7,7 +7,7 @@ import axios from 'axios';
 import './Home.scss';
 import authMw from '../util/auth';
 import Title from '../Title/Title';
-import Input from '../Input/Input';
+import TagChoice from '../TagChoice/TagChoice';
 import User from '../User/User';
 import Tags from '../Tags/Tags';
 import EmptyWarning from '../EmptyWarning/EmptyWarning';
@@ -64,7 +64,7 @@ const Home = () => {
                 if(error.response.status === 403){
                     history.push("/login")
                 };
-                setErrors(error)
+                setErrors(error.response.data)
             })
             .finally(() => setLoader(false))
    }, []);
@@ -79,7 +79,7 @@ const Home = () => {
         setTags([...response.data]);
     })
     .catch((error) => {
-        setErrors(error)
+        setErrors(error.response)
     })
     .finally(() => {setLoader(false)})
    }
@@ -113,7 +113,7 @@ const Home = () => {
         axios(options)
             
             .then(() => getBreebes())
-            .catch((error) => setErrors(error))
+            .catch((error) => setErrors(error.response.data))
             .finally(() => {
                 setLoader(false);
                 setBody('')})
@@ -133,8 +133,8 @@ const Home = () => {
        setTag(event.target.value);
    }
 
-   const filterTags = (id) => {
-        const filteredTag = tags.filter((breebe) => breebe.breebeId === id);
+   const filterTags = (tag) => {
+        const filteredTag = tags.filter((breebe) => breebe.tag === tag);
         setBreebes(filteredTag);
    }
 
@@ -173,7 +173,7 @@ const Home = () => {
                 setEditMode(false);
                 setTag('');
                 setEditedBreebe('')})
-             .catch((error) => setErrors(error))
+             .catch((error) => setErrors(error.response.data))
              .finally(() => setLoader(false) )
        
    }
@@ -190,7 +190,7 @@ const Home = () => {
                 getBreebes();
             })
             .catch((error) => {
-                setErrors(error)
+                setErrors(error.response.data)
             })
             .finally(() => setLoader(false))
    }
@@ -199,6 +199,7 @@ const Home = () => {
        if(e.target.className ==='modal') {
            e.stopPropagation();
            setEditMode(false);
+           setTag('');
            setEmpty(false);
        }
    }
@@ -250,6 +251,9 @@ const Home = () => {
     }
    }
 
+   const appendTag = (tag) => {
+    setTag(tag);
+   }
 
   return (
   <div>
@@ -308,6 +312,7 @@ const Home = () => {
     <Tags breebes={tags} filterTags={filterTags} getBreebes={getBreebes} />
     )} 
 
+    {errors !== null && (<div className="error">{Object.values(errors)}</div>)}
     <div className="breebes">
       {breebes.length !== 0 && breebes.map((breebe, index) => (
                 <div key={index} className="single-breebe">
@@ -345,13 +350,16 @@ const Home = () => {
                     onChange={handleEdit}
                     />
                     </label>
-                    <label className="modal--title"><h3 className="modal--label">Modifier le thème : </h3>{singleBreebe.tag}
+                    <label className="modal--title"><h3 className="modal--label">Ajouter un thème : </h3>{singleBreebe.tag}
                     <input
                      className="single-breebe--tag-edit"
                      value={tagBreebe}
                      onChange={handleTag}
                      />
                     </label>
+                    Ou choisir parmi les existants
+                    <TagChoice breebes={tags} appendTag={appendTag} />
+                    
                     <div className="single-breebe--edited-icons">
                     <img src={breebepen} 
                     className="single-breebe--edit-pen"
