@@ -1,12 +1,11 @@
 @import 'src/styles/vars';
-@import url('https://fonts.googleapis.com/css2?family=Ramaraja&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500&display=swap');
 
 .user{
     &--name{
     font-family: 'Montserrat Alternates', sans-serif;
     font-size: .8em;
-    font-weight: 700;
+    font-weight: 500;
     position: absolute;
     top: 0;
     left: 0%;
@@ -44,7 +43,7 @@
 }
 
 .bolder {
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .modal-main--back{
@@ -63,3 +62,9 @@
     margin: auto;
     margin-top: $medium-gutter;
 }
+
+@media screen  and (max-device-width: 480px) and (orientation: portrait) { 
+    .user--name {
+        width: 20%;
+    }
+   }

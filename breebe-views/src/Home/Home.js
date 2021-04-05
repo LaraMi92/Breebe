@@ -85,7 +85,7 @@ const Home = () => {
    }
 
    const setNewBreebe = (event) => {
-       setErrors('');
+       setError('');
        setBody(event.target.value);
    }
 
@@ -285,7 +285,7 @@ const Home = () => {
         <defs>
             <path d="M6,150C49.63,93,105.79,36.65,156.2,47.55,207.89,58.74,213,131.91,264,150c40.67,14.43,108.57-6.91,229-145" id="txt-path"></path>
         </defs>
-        <text fill="#E2A9BD" fontSize="30" fontFamily="Ramaraja" width="425" height="300" fontWeight="60">
+        <text fill="#E2A9BD" fontSize="20" width="425" height="300" fontFamily="Montserrat Alternates" fontWeight="60">
         <textPath startOffset="0" xlinkHref="#txt-path">L'interminable est la spécialité des indécis</textPath>
         </text>
     </svg>
