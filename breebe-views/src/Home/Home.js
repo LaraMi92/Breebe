@@ -2,8 +2,6 @@
 import {useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import SimpleCloud from '../BreebeCloud/reactwordcloud';
-
 
 //== Local Components imports
 import './Home.scss';
@@ -14,6 +12,7 @@ import User from '../User/User';
 import Tags from '../Tags/Tags';
 import EmptyWarning from '../EmptyWarning/EmptyWarning';
 import Brouvoir from '../Brouvoir/Brouvoir';
+import SimpleCloud from '../BreebeCloud/reactwordcloud';
 
 //== Assets
 import proxy from '../util/proxy';
@@ -28,6 +27,7 @@ import Loader from '../assets/Loader.svg';
 const Home = () => {
    
    const [breebes, setBreebes] = useState([]);
+   const [tags, setTags] = useState([]);
    const [pseudo, setPseudo] = useState('');
    const [errors, setErrors] = useState([]);
    const [error, setError] = useState('');
@@ -75,7 +75,8 @@ const Home = () => {
     setLoader(true);
     axios.get(`${proxy}/breebes`)
     .then((response) => {
-        setBreebes(response.data);
+        setBreebes([...response.data]);
+        setTags([...response.data]);
     })
     .catch((error) => {
         setErrors(error)
@@ -133,7 +134,7 @@ const Home = () => {
    }
 
    const filterTags = (id) => {
-        const filteredTag = breebes.filter((breebe) => breebe.breebeId === id);
+        const filteredTag = tags.filter((breebe) => breebe.breebeId === id);
         setBreebes(filteredTag);
    }
 
@@ -220,7 +221,7 @@ const Home = () => {
        final.push(arr.map(el => ({text: el[0], value: el[1]*100})))
         return final;
     }
-    const breebeWords = breebes.map(breebe => breebe.body);
+    const breebeWords = tags.map(breebe => breebe.body);
     const cloud = wordFreq(breebeWords);
     setCloud(cloud);
      
@@ -228,7 +229,7 @@ const Home = () => {
 
    const prepareBrouvoir = () => {
     const toEndWith = endings[Math.floor(Math.random() * (endings.length - 1) + 1)];
-    const allBodies = breebes.map(breebe => breebe.body);
+    const allBodies = tags.map(breebe => breebe.body);
     const body = allBodies[Math.floor(Math.random() * (allBodies.length - 1) + 1)]
     
     setBrouve([body, toEndWith]);
@@ -259,7 +260,7 @@ const Home = () => {
         <button type="button"className="get-breebes" onClick={getBreebes}>Mes breebes</button>
         {breebes.length !== 0 && 
         <>
-        <button type="button"className="get-breebes" onClick={() => {
+        <button className="get-breebes" type="button" onClick={() => {
             setLoader(true);
             prepareStats();
             setLoader(false);
@@ -302,7 +303,7 @@ const Home = () => {
     </form>
    
     {breebes.length !== 0 && (
-    <Tags breebes={breebes} filterTags={filterTags} getBreebes={getBreebes} />
+    <Tags breebes={tags} filterTags={filterTags} getBreebes={getBreebes} />
     )} 
 
     <div className="breebes">

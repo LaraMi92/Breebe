@@ -7,6 +7,7 @@ import './App.scss';
 import Login from './Login/Login';
 import SignUp from './SignUp/SignUp';
 import Home from './Home/Home';
+import SimpleCloud from './BreebeCloud/reactwordcloud';
 import NotFound from './NotFound/NotFound';
 
 const App = () => {
