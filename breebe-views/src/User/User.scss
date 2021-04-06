@@ -39,6 +39,8 @@
             flex-flow: row wrap;
             align-items: baseline;
             justify-content: space-around;
+            margin: $mini-gutter;
+            padding: $mini-gutter;
         }
     }
     
@@ -62,7 +64,7 @@
     max-width: 400px;
     overflow-y: auto;
     margin: auto;
-    margin-top: $medium-gutter;
+    margin-top: $mini-gutter;
 }
 
 @media screen  and (max-device-width: 480px) and (orientation: portrait) { 
