@@ -10,11 +10,12 @@
     font-weight: 500;
     position: absolute;
     top: 0;
-    left: 0%;
+    right: 0%;
     background-color:rgba(226, 167, 188, 0.53);
     border-radius: 30px;
     padding: $basic-gutter;
     margin: $basic-gutter;
+    text-align: center;
     cursor: pointer;
     }
     &--logout{
@@ -65,6 +66,7 @@
     overflow-y: auto;
     margin: auto;
     margin-top: $mini-gutter;
+    margin-bottom: $mini-gutter;
 }
 
 @media screen  and (max-device-width: 480px) and (orientation: portrait) { 
