@@ -207,7 +207,7 @@ const Home = () => {
    const prepareStats = () => {
     const wordFreq = (string) => {
     
-        let words = string.toString().replace(/[.]/g, '').split(/\s/);
+        let words = string.toString().replace("[^\w\s]", '').split(/\s/);
         let freqMap = {};
         let arr = [];
         let final = [];
