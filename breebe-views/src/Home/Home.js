@@ -258,9 +258,7 @@ const Home = () => {
   return (
   <div>
       <Title />
-       <a className="user--name"
-       href='/user'
-       onClick={() => (<User pseudo={pseudo} logOut={logOut} />)}>Mon compte</a> 
+      <User pseudo={pseudo} logOut={logOut} />
         
         <div className="all-buttons">
         <button type="button"className="get-breebes" onClick={getBreebes}>Mes breebes</button>
