@@ -1,24 +1,4 @@
-import './User.scss';
-import {useState} from 'react';
-import breebelogo from '../assets/breebelogo.svg';
-import breebeback from '../assets/breebeback.svg';
-
-const User = ({pseudo, logOut}) => {
-  const [modal, setModal] = useState(false);
-  
-  const closeModal = (e) => {
-    if(e.target.className ==='modal' || e.target.className === 'modal-main--back') {
-        e.stopPropagation();
-        setModal(false);
-    }
-}
-  return(
-    <div>
-    <div className="user" onClick={() => setModal(true)}>
-    {modal ? <div className="modal" onClick={closeModal}>
-    <div className="modal-user user--intro">
-     <div>
-     <svg width="640" height="100" className="logo" viewBox="0 0 640 480">
+ <svg width="640" height="100" className="logo" viewBox="0 0 640 480">
     <defs>
   <linearGradient id="svg_13" spreadMethod="pad" x1="0" x2="1" y1="0" y2="0">
    <stop offset="0" stop-color="#7f003f"/>
@@ -46,27 +26,3 @@ const User = ({pseudo, logOut}) => {
   <rect fill="url(#svg_13)" height="247.99999" id="svg_28" opacity="0.71" stroke="#000000" stroke-linejoin="round" stroke-width="0" transform="rotate(10 297.813 234.275)" width="404.99998" x="95.31255" y="110.27549"/>
  </g>
 </svg>
-</div>
-    Bonjour {pseudo},
-    <p>Bienvenue dans votre espace Breebe. </p>
-    <p className="bolder"> Une fois votre breebe écrite et soumise, vous pouvez y apposer un thème. </p>
-     <p> Cela vous permettra de retrouver vos Breebes plus aisément.</p>
-    <p className="bolder"> Vous voulez savoir quels sont les mots que vous utilisez le plus fréquemment ? </p>
-      <p>Le Brumulus est là pour ça. </p><p>N'hésitez pas à le sauvegarder.</p>
-    <p className="bolder"> Vous manquez d'inspiration ?</p><p> L'Abreeboir sélectionnera une de vos breebes pour la refaçonner.</p>
-    <div className="user--intro--btns">
-    <img src={breebeback} className='modal-main--back' alt="go back" onClick={closeModal}/>
-        <button className="user--logout" type="button" onClick={logOut}>déconnexion</button>
-    </div>
-    </div>
-    </div>
-    :
-    <div className="user--name">{pseudo}</div>}
-    </div>
-   
-    </div>
-  
-  )
-}
-
-export default User;
