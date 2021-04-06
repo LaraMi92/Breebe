@@ -73,19 +73,43 @@
     box-shadow: inset 13px 13px 22px #dfbeca,
             inset -13px -13px 22px #ffe0ee;
     width: 250px;
-    min-height: 250px;
+   /*  height: 250px;
+   
+   overflow-y: auto; */
     display: flex;
+    flex-flow: column wrap;
     font-family: 'Montserrat Alternates', sans-serif;
     box-sizing: content-box;
     justify-content: center;
     align-content: center;
     align-items: center;
     margin: $mini-gutter;
+    padding: $mini-gutter;
+   &--block{
+    height: 250px;
+    overflow-y: auto;
+    display: flex;
+    flex-flow: row wrap;
+    word-break: break-word;
+    justify-content: center;
+    align-items: center;
+   }
+   &--edit-block{
+    height: 100px;
+    overflow-y: auto;
+    display: flex;
+    flex-flow: row wrap;
+    word-break: break-word;
+    justify-content: center;
+    align-items: center;
+   }
     &--form{
         display: flex;
         align-items: center;
         justify-content: center;
         box-sizing: content-box;
+        height: 250px;
+        overflow-y: auto;
     }
     &--input {
         display: block;
@@ -108,7 +132,7 @@
         box-sizing: content-box;
     }
     &--text {
-        display: inline-block;
+        /* display: inline-block; */
         width: 100%;
     }
     &--icons {
@@ -164,6 +188,7 @@
 .modal-main {
     width: 250px;
     min-height: 250px;
+    padding: $mini-gutter;
     display: flex;
     flex-flow: column wrap;
     overflow-y: initial !important;

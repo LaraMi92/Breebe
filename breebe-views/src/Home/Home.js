@@ -79,7 +79,7 @@ const Home = () => {
         setTags([...response.data]);
     })
     .catch((error) => {
-        setErrors(error.response)
+        setErrors(error.response.data)
     })
     .finally(() => {setLoader(false)})
    }
@@ -312,12 +312,12 @@ const Home = () => {
     <Tags breebes={tags} filterTags={filterTags} getBreebes={getBreebes} />
     )} 
 
-    {errors !== null && (<div className="error">{Object.values(errors)}</div>)}
+    {errors !== null && (<div className="empty">{Object.values(errors)}</div>)}
     <div className="breebes">
       {breebes.length !== 0 && breebes.map((breebe, index) => (
                 <div key={index} className="single-breebe">
                 
-                    <div>
+                    <div className="single-breebe--block">
                      <div className="single-breebe--text">{breebe.body}</div>
                     <div className="single-breebe--icons">
                      <img src={breebepen} 
@@ -343,7 +343,7 @@ const Home = () => {
                         closeModal(event);
                         }}>
                     <form className="modal-main">
-                    <label className="modal--title"><h3 className="modal--label"> Modifier ma Breebe : </h3> {empty ? <EmptyWarning /> : singleBreebe.body}
+                    <label className="modal--title"><h3 className="modal--label"> Modifier ma Breebe : </h3> {empty ? <EmptyWarning /> : <div className="single-breebe--edit-block single-breebe--text">{singleBreebe.body}</div>}
                     <input
                     className="single-breebe--input"
                     value={editedBreebe}
@@ -357,7 +357,7 @@ const Home = () => {
                      onChange={handleTag}
                      />
                     </label>
-                    Ou choisir parmi les existants
+                    <div className="modal--label">Ou choisir parmi les existants</div>
                     <TagChoice breebes={tags} appendTag={appendTag} />
                     
                     <div className="single-breebe--edited-icons">
