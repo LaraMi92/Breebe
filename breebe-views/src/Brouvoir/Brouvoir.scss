@@ -8,6 +8,9 @@
     padding: $mini-gutter; 
     box-sizing: content-box;
     border-radius: 29px;
+    &--space{
+        padding: $mini-gutter;
+    }
 }
 
 .modal-main--go-back{
