@@ -249,6 +249,11 @@
     padding-bottom: $mini-gutter;
 }
 
+.underline {
+   text-decoration: underline;
+   cursor: pointer;
+}
+
 /*MEDIA QUERIES*/
 
 @media screen  and (max-device-width: 480px) and (orientation: portrait) { 
