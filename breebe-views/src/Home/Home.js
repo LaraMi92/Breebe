@@ -357,7 +357,7 @@ const Home = () => {
                      />
                     </label>
                     <div className="modal--label">Ou choisir parmi les existants</div>
-                    <TagChoice breebes={tags} appendTag={appendTag} />
+                    <div className="single-breebe--edit-block"><TagChoice breebes={tags} appendTag={appendTag} /></div>
                     
                     <div className="single-breebe--edited-icons">
                     <img src={breebepen} 
